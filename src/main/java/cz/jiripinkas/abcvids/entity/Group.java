@@ -85,4 +85,11 @@ public class Group {
 		this.seoDescription = seoDescription;
 	}
 
+	@Override
+	public String toString() {
+		return "Group [id=" + id + ", name=" + name + ", description="
+				+ description + ", keywords=" + keywords + ", seoDescription="
+				+ seoDescription + "]";
+	}
+
 }

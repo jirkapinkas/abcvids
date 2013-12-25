@@ -8,8 +8,8 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
 
 import cz.jiripinkas.abcvids.annotation.UIComponent;
-import cz.jiripinkas.abcvids.mvp.impl.MVPGroupDetail;
-import cz.jiripinkas.abcvids.mvp.impl.MVPGroups;
+import cz.jiripinkas.abcvids.view.GroupDetailView;
+import cz.jiripinkas.abcvids.view.GroupsView;
 
 @Theme("mytheme")
 @SuppressWarnings("serial")
@@ -17,10 +17,10 @@ import cz.jiripinkas.abcvids.mvp.impl.MVPGroups;
 public class MyVaadinUI extends UI {
 	
 	@Autowired
-	private MVPGroups mvpGroups;
+	private GroupsView groupsView;
 	
 	@Autowired
-	private MVPGroupDetail mvpGroupDetail;
+	private GroupDetailView groupDetailView;
 
 	public static final String VIEW_GROUPS = "";
 	
@@ -31,8 +31,8 @@ public class MyVaadinUI extends UI {
 	@Override
 	protected void init(VaadinRequest request) {
 		navigator = new Navigator(this, this);
-		navigator.addView(VIEW_GROUPS, mvpGroups.getView());
-		navigator.addView(VIEW_GROUP_DETAIL, mvpGroupDetail.getView());
+		navigator.addView(VIEW_GROUPS, groupsView);
+		navigator.addView(VIEW_GROUP_DETAIL, groupDetailView);
 	}
 
 }
