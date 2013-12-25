@@ -9,7 +9,7 @@ import com.vaadin.ui.UI;
 
 import cz.jiripinkas.abcvids.annotation.UIComponent;
 import cz.jiripinkas.abcvids.view.GroupDetailView;
-import cz.jiripinkas.abcvids.view.GroupsView;
+import cz.jiripinkas.abcvids.view.GroupListView;
 
 @Theme("mytheme")
 @SuppressWarnings("serial")
@@ -17,7 +17,7 @@ import cz.jiripinkas.abcvids.view.GroupsView;
 public class MyVaadinUI extends UI {
 	
 	@Autowired
-	private GroupsView groupsView;
+	private GroupListView groupsView;
 	
 	@Autowired
 	private GroupDetailView groupDetailView;

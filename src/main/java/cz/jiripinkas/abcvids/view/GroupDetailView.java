@@ -6,14 +6,13 @@ import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup.CommitException;
 import com.vaadin.data.util.BeanItem;
-import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Layout;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.TextArea;
@@ -26,8 +25,10 @@ import cz.jiripinkas.abcvids.ui.MyVaadinUI;
 
 @SuppressWarnings("serial")
 @UIComponent
-public class GroupDetailView extends CustomComponent implements View {
+public class GroupDetailView extends MyCustomMenuBarView {
 
+	private Button buttonSave;
+	private Button buttonCancel;
 	private TextField keywords;
 	private TextField name;
 	private TextArea description;
@@ -40,8 +41,14 @@ public class GroupDetailView extends CustomComponent implements View {
 
 	@Override
 	public void enter(ViewChangeEvent event) {
+		fieldGroup = new BeanFieldGroup<Group>(Group.class);
+		Group group = new Group();
+		fieldGroup.setItemDataSource(new BeanItem<Group>(group));
+		fieldGroup.bindMemberFields(this);
+	}
 
-		// create layout
+	@Override
+	protected Layout buildLayout() {
 		FormLayout layout = new FormLayout();
 		layout.setMargin(true);
 
@@ -60,8 +67,18 @@ public class GroupDetailView extends CustomComponent implements View {
 		seoDescription = new TextArea("SEO Description:");
 		layout.addComponent(seoDescription);
 
-		Button button = new Button("Save");
-		button.addClickListener(new ClickListener() {
+		buttonSave = new Button("Save");
+		layout.addComponent(buttonSave);
+
+		buttonCancel = new Button("Cancel");
+		layout.addComponent(buttonCancel);
+
+		return layout;
+	}
+
+	@Override
+	protected void setListeners() {
+		buttonSave.addClickListener(new ClickListener() {
 
 			@Override
 			public void buttonClick(ClickEvent event) {
@@ -69,11 +86,8 @@ public class GroupDetailView extends CustomComponent implements View {
 				try {
 					fieldGroup.commit();
 					@SuppressWarnings("unchecked")
-					BeanItem<Group> beanItem = (BeanItem<Group>) fieldGroup
-							.getItemDataSource();
+					BeanItem<Group> beanItem = (BeanItem<Group>) fieldGroup.getItemDataSource();
 					Group group = beanItem.getBean();
-
-					System.out.println(group);
 
 					groupService.save(group);
 					Notification.show("saved");
@@ -85,15 +99,14 @@ public class GroupDetailView extends CustomComponent implements View {
 
 			}
 		});
-		layout.addComponent(button);
 
-		setCompositionRoot(layout);
-		
-		fieldGroup = new BeanFieldGroup<Group>(Group.class);
-		Group group = new Group();
-		fieldGroup.setItemDataSource(new BeanItem<Group>(group));
-		fieldGroup.bindMemberFields(this);
+		buttonCancel.addClickListener(new ClickListener() {
 
+			@Override
+			public void buttonClick(ClickEvent event) {
+				getUI().getNavigator().navigateTo(MyVaadinUI.VIEW_GROUPS);
+			}
+		});
 	}
 
 }

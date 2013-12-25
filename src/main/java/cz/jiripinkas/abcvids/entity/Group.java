@@ -21,18 +21,18 @@ public class Group {
 	private Integer id;
 
 	@Column(length = 200, nullable = false)
-	private String name;
+	private String name = "";
 
 	@Lob
 	@Column(nullable = false, length = Integer.MAX_VALUE)
 	@Basic(fetch = FetchType.LAZY)
-	private String description;
+	private String description = "";
 
 	@Column(length = 300, nullable = false)
-	private String keywords;
+	private String keywords = "";
 
 	@Column(name = "seo_description", length = 500, nullable = false)
-	private String seoDescription;
+	private String seoDescription = "";
 
 	@OneToMany(mappedBy = "group")
 	private List<Item> items;
@@ -83,13 +83,6 @@ public class Group {
 
 	public void setSeoDescription(String seoDescription) {
 		this.seoDescription = seoDescription;
-	}
-
-	@Override
-	public String toString() {
-		return "Group [id=" + id + ", name=" + name + ", description="
-				+ description + ", keywords=" + keywords + ", seoDescription="
-				+ seoDescription + "]";
 	}
 
 }
