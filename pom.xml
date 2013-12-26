@@ -74,6 +74,13 @@
          <version>${hibernate.version}</version>
       </dependency>
 
+      <!-- Vaadin Confirm Dialog -->
+      <dependency>
+         <groupId>org.vaadin.addon</groupId>
+         <artifactId>confirmdialog</artifactId>
+         <version>2.0.4</version>
+      </dependency>
+
       <!-- Vaadin Spring Integration -->
       <dependency>
          <groupId>ru.xpoft.vaadin</groupId>

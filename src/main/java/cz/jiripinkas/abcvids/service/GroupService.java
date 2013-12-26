@@ -37,4 +37,8 @@ public class GroupService {
 		groupRepository.delete(groupId);
 	}
 
+	public Group findOne(int groupId) {
+		return groupRepository.findOne(groupId);
+	}
+
 }

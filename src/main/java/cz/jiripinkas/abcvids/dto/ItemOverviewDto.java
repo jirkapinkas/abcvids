@@ -1,6 +1,6 @@
 package cz.jiripinkas.abcvids.dto;
 
-public class GroupOverviewDto {
+public class ItemOverviewDto {
 
 	private Integer id;
 

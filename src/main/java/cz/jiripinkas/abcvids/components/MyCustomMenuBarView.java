@@ -1,4 +1,4 @@
-package cz.jiripinkas.abcvids.view;
+package cz.jiripinkas.abcvids.components;
 
 import com.vaadin.navigator.View;
 import com.vaadin.ui.CustomComponent;

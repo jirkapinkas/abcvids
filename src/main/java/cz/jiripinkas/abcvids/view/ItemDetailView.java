@@ -22,37 +22,46 @@ import cz.jiripinkas.abcvids.annotation.UIComponent;
 import cz.jiripinkas.abcvids.components.CancelButton;
 import cz.jiripinkas.abcvids.components.MyCustomMenuBarView;
 import cz.jiripinkas.abcvids.components.SaveButton;
-import cz.jiripinkas.abcvids.entity.Group;
-import cz.jiripinkas.abcvids.service.GroupService;
+import cz.jiripinkas.abcvids.entity.Item;
+import cz.jiripinkas.abcvids.service.ItemService;
 import cz.jiripinkas.abcvids.ui.MyVaadinUI;
 
 @SuppressWarnings("serial")
 @UIComponent
-public class GroupDetailView extends MyCustomMenuBarView {
+public class ItemDetailView extends MyCustomMenuBarView {
 
 	private Button buttonSave;
 	private Button buttonCancel;
-	private TextField keywords;
+
 	private TextField name;
+	private TextField keywords;
 	private TextArea description;
 	private TextArea seoDescription;
+	private TextField url;
 
 	private FieldGroup fieldGroup;
 
+	private int groupId;
+
 	@Autowired
-	private GroupService groupService;
+	private ItemService itemService;
 
 	@Override
 	public void enter(ViewChangeEvent event) {
 		name.focus();
-		fieldGroup = new BeanFieldGroup<Group>(Group.class);
-		Group group = null;
-		if(event.getParameters().equals("")) {
-			group = new Group();
+		String[] parameters = event.getParameters().split("/");
+		
+		groupId = Integer.parseInt(parameters[0]);
+
+		fieldGroup = new BeanFieldGroup<Item>(Item.class);
+		Item item = null;
+		if (parameters.length == 1) {
+			item = new Item();
 		} else {
-			group = groupService.findOne(Integer.parseInt(event.getParameters()));
+			int itemId = Integer.parseInt(parameters[1]);
+			item = itemService.findOne(itemId);
 		}
-		fieldGroup.setItemDataSource(new BeanItem<Group>(group));
+		fieldGroup.setItemDataSource(new BeanItem<Item>(item));
 		fieldGroup.bindMemberFields(this);
 	}
 
@@ -60,14 +69,15 @@ public class GroupDetailView extends MyCustomMenuBarView {
 	protected Layout buildLayout() {
 		FormLayout layout = new FormLayout();
 		layout.setMargin(true);
-		
-		Label labelTitle = new Label("New group:");
+
+		Label labelTitle = new Label("New item:");
 		name = new TextField("Name:");
 		keywords = new TextField("Keywords:");
 		description = new TextArea("Description:");
 		seoDescription = new TextArea("SEO Description:");
+		url = new TextField("URL:");
 
-		layout.addComponents(labelTitle, name, keywords, description, seoDescription);
+		layout.addComponents(labelTitle, name, keywords, description, seoDescription, url);
 
 		buttonSave = new SaveButton();
 		layout.addComponent(buttonSave);
@@ -80,6 +90,7 @@ public class GroupDetailView extends MyCustomMenuBarView {
 
 	@Override
 	protected void setListeners() {
+
 		buttonSave.addClickListener(new ClickListener() {
 
 			@Override
@@ -88,17 +99,16 @@ public class GroupDetailView extends MyCustomMenuBarView {
 				try {
 					fieldGroup.commit();
 					@SuppressWarnings("unchecked")
-					BeanItem<Group> beanItem = (BeanItem<Group>) fieldGroup.getItemDataSource();
-					Group group = beanItem.getBean();
+					BeanItem<Item> beanItem = (BeanItem<Item>) fieldGroup.getItemDataSource();
+					Item item = beanItem.getBean();
 
-					groupService.save(group);
+					itemService.save(item, groupId);
 					Notification.show("saved");
-					getUI().getNavigator().navigateTo(MyVaadinUI.VIEW_GROUPS);
+					getUI().getNavigator().navigateTo(MyVaadinUI.VIEW_ITEMS + "/" + groupId);
 				} catch (CommitException e) {
 					Notification.show(e.getMessage(), Type.ERROR_MESSAGE);
 					e.printStackTrace();
 				}
-
 			}
 		});
 
@@ -106,7 +116,7 @@ public class GroupDetailView extends MyCustomMenuBarView {
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				getUI().getNavigator().navigateTo(MyVaadinUI.VIEW_GROUPS);
+				getUI().getNavigator().navigateTo(MyVaadinUI.VIEW_ITEMS + "/" + groupId);
 			}
 		});
 	}
