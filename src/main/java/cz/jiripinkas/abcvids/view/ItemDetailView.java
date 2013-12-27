@@ -34,6 +34,7 @@ public class ItemDetailView extends MyCustomMenuBarView {
 	private Button buttonCancel;
 
 	private TextField name;
+	private TextField shortName;
 	private TextField keywords;
 	private TextArea description;
 	private TextArea seoDescription;
@@ -57,9 +58,11 @@ public class ItemDetailView extends MyCustomMenuBarView {
 		Item item = null;
 		if (parameters.length == 1) {
 			item = new Item();
+			shortName.setVisible(false);
 		} else {
 			int itemId = Integer.parseInt(parameters[1]);
 			item = itemService.findOne(itemId);
+			shortName.setVisible(true);
 		}
 		fieldGroup.setItemDataSource(new BeanItem<Item>(item));
 		fieldGroup.bindMemberFields(this);
@@ -72,12 +75,13 @@ public class ItemDetailView extends MyCustomMenuBarView {
 
 		Label labelTitle = new Label("New item:");
 		name = new TextField("Name:");
+		shortName = new TextField("Short name:");
 		keywords = new TextField("Keywords:");
 		description = new TextArea("Description:");
 		seoDescription = new TextArea("SEO Description:");
 		url = new TextField("URL:");
 
-		layout.addComponents(labelTitle, name, keywords, description, seoDescription, url);
+		layout.addComponents(labelTitle, name, shortName, keywords, description, seoDescription, url);
 
 		buttonSave = new SaveButton();
 		layout.addComponent(buttonSave);

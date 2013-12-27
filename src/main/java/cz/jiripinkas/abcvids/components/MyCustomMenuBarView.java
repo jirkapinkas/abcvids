@@ -4,7 +4,11 @@ import com.vaadin.navigator.View;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.MenuBar.MenuItem;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+
+import cz.jiripinkas.abcvids.ui.MyVaadinUI;
 
 @SuppressWarnings("serial")
 public abstract class MyCustomMenuBarView extends CustomComponent implements
@@ -26,46 +30,21 @@ public abstract class MyCustomMenuBarView extends CustomComponent implements
 		MenuBar menuBar = new MenuBar();
 		menuBar.setWidth("100%");
 
-//		MenuItem mainItem = menuBar.addItem("Main", null);
-//		mainItem.addItem("User details", new MenuBar.Command() {
-//			@Override
-//			public void menuSelected(MenuItem selectedItem) {
-//				getUI().getNavigator()
-//						.navigateTo(MyVaadinUI.VIEW_CONFIGURATION);
-//			}
-//		});
-//
-//		mainItem.addItem("Logout", new MenuBar.Command() {
-//			@Override
-//			public void menuSelected(MenuItem selectedItem) {
-//				getUI().getPage().open("/logout", null);
-//			}
-//		});
-//
-//		MenuItem dataItem = menuBar.addItem("Data", null);
-//
-//		dataItem.addItem("All emails", new MenuBar.Command() {
-//			@Override
-//			public void menuSelected(MenuItem selectedItem) {
-//				getUI().getNavigator().navigateTo(MyVaadinUI.VIEW_ALL_EMAILS);
-//			}
-//		});
-//
-//		dataItem.addItem("Send email", new MenuBar.Command() {
-//			@Override
-//			public void menuSelected(MenuItem selectedItem) {
-//				getUI().getNavigator().navigateTo(MyVaadinUI.VIEW_SEND_EMAIL);
-//			}
-//		});
-//
-//		if (SpringSecurityHelper.hasRole("ROLE_ADMIN")) {
-//			dataItem.addItem("All users", new MenuBar.Command() {
-//				@Override
-//				public void menuSelected(MenuItem selectedItem) {
-//					getUI().getNavigator().navigateTo(MyVaadinUI.VIEW_USERS);
-//				}
-//			});
-//		}
+		MenuItem mainItem = menuBar.addItem("Main", null);
+		mainItem.addItem("All groups", new MenuBar.Command() {
+			@Override
+			public void menuSelected(MenuItem selectedItem) {
+				getUI().getNavigator()
+						.navigateTo(MyVaadinUI.VIEW_GROUPS);
+			}
+		});
+
+		mainItem.addItem("Logout", new MenuBar.Command() {
+			@Override
+			public void menuSelected(MenuItem selectedItem) {
+				UI.getCurrent().getPage().open("/logout", null);
+			}
+		});
 
 		return menuBar;
 	}

@@ -12,6 +12,7 @@ import cz.jiripinkas.abcvids.entity.Group;
 import cz.jiripinkas.abcvids.entity.Item;
 import cz.jiripinkas.abcvids.repository.GroupRepository;
 import cz.jiripinkas.abcvids.repository.ItemRepository;
+import cz.jiripinkas.abcvids.util.MyUtil;
 
 @Transactional
 @Service
@@ -27,6 +28,7 @@ public class InitDbService {
 	public void init() {
 		Group groupOracle = new Group();
 		groupOracle.setName("Oracle database");
+		groupOracle.setShortName(MyUtil.transformNameToShortName(groupOracle.getName()));
 		groupOracle.setDescription("All about Oracle database");
 		groupOracle.setKeywords("oracle, database");
 		groupOracle.setSeoDescription("Oracle DB");
@@ -36,6 +38,7 @@ public class InitDbService {
 		itemInstallation.setGroup(groupOracle);
 		itemInstallation.setCreatedDate(new Date());
 		itemInstallation.setName("Oracle XE installation");
+		itemInstallation.setShortName(MyUtil.transformNameToShortName(itemInstallation.getName()));
 		itemInstallation.setDescription("How to install Oracle XE");
 		itemInstallation.setSeoDescription("Installing Oracle XE");
 		itemInstallation.setKeywords("oracle, installation");
@@ -46,8 +49,8 @@ public class InitDbService {
 		itemConnect.setGroup(groupOracle);
 		itemConnect.setCreatedDate(new Date());
 		itemConnect.setName("Connecting to Oracle XE database");
-		itemConnect
-				.setDescription("How to connect to Oracle XE database using SQL Developer");
+		itemConnect.setShortName(MyUtil.transformNameToShortName(itemConnect.getName()));
+		itemConnect.setDescription("How to connect to Oracle XE database using SQL Developer");
 		itemConnect.setSeoDescription("Connecting to Oracle db.");
 		itemConnect.setKeywords("oracle, connection");
 		itemConnect.setUrl("http://youtube.com/");

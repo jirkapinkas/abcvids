@@ -24,6 +24,9 @@ public class Item {
 	@Column(length = 200, nullable = false)
 	private String name = "";
 
+	@Column(length = 200, nullable = false, unique = true)
+	private String shortName = "";
+
 	@Lob
 	@Column(nullable = false, length = Integer.MAX_VALUE)
 	@Basic(fetch = FetchType.LAZY)
@@ -44,6 +47,14 @@ public class Item {
 	@ManyToOne
 	@JoinColumn(name = "group_id")
 	private Group group;
+
+	public String getShortName() {
+		return shortName;
+	}
+
+	public void setShortName(String shortName) {
+		this.shortName = shortName;
+	}
 
 	public Group getGroup() {
 		return group;

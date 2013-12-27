@@ -20,6 +20,7 @@ import cz.jiripinkas.abcvids.components.DeleteTableButton;
 import cz.jiripinkas.abcvids.components.MyCustomMenuBarView;
 import cz.jiripinkas.abcvids.components.NavigatorTableButton;
 import cz.jiripinkas.abcvids.dto.GroupOverviewDto;
+import cz.jiripinkas.abcvids.entity.Group;
 import cz.jiripinkas.abcvids.service.GroupService;
 import cz.jiripinkas.abcvids.ui.MyVaadinUI;
 
@@ -38,7 +39,7 @@ public class GroupListView extends MyCustomMenuBarView {
 	public void enter(ViewChangeEvent event) {
 		BeanContainer<Integer, GroupOverviewDto> container = new BeanContainer<Integer, GroupOverviewDto>(GroupOverviewDto.class);
 		container.setBeanIdProperty("id");
-		container.addAll(groupService.findAll());
+		container.addAll(groupService.findAllOverview());
 
 		table.setContainerDataSource(container);
 
@@ -68,6 +69,17 @@ public class GroupListView extends MyCustomMenuBarView {
 				groupService.delete(id);
 			}
 		});
+
+		table.removeGeneratedColumn("public");
+		table.addGeneratedColumn("public", new NavigatorTableButton(">") {
+
+			@Override
+			public void navigateToUrl(String id) {
+				Group group = groupService.findOne(Integer.parseInt(id));
+				UI.getCurrent().getPage().open("/tutorial/" + group.getShortName() + ".html", "_blank");
+			}
+		});
+
 	}
 
 	@Override

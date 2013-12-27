@@ -23,6 +23,9 @@ public class Group {
 	@Column(length = 200, nullable = false)
 	private String name = "";
 
+	@Column(length = 200, nullable = false, unique = true)
+	private String shortName = "";
+
 	@Lob
 	@Column(nullable = false, length = Integer.MAX_VALUE)
 	@Basic(fetch = FetchType.LAZY)
@@ -36,6 +39,14 @@ public class Group {
 
 	@OneToMany(mappedBy = "group")
 	private List<Item> items;
+
+	public String getShortName() {
+		return shortName;
+	}
+
+	public void setShortName(String shortName) {
+		this.shortName = shortName;
+	}
 
 	public List<Item> getItems() {
 		return items;

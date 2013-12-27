@@ -34,6 +34,7 @@ public class GroupDetailView extends MyCustomMenuBarView {
 	private Button buttonCancel;
 	private TextField keywords;
 	private TextField name;
+	private TextField shortName;
 	private TextArea description;
 	private TextArea seoDescription;
 
@@ -48,9 +49,12 @@ public class GroupDetailView extends MyCustomMenuBarView {
 		fieldGroup = new BeanFieldGroup<Group>(Group.class);
 		Group group = null;
 		if(event.getParameters().equals("")) {
+			System.out.println("disable short name");
 			group = new Group();
+			shortName.setVisible(false);
 		} else {
 			group = groupService.findOne(Integer.parseInt(event.getParameters()));
+			shortName.setVisible(true);
 		}
 		fieldGroup.setItemDataSource(new BeanItem<Group>(group));
 		fieldGroup.bindMemberFields(this);
@@ -63,11 +67,12 @@ public class GroupDetailView extends MyCustomMenuBarView {
 		
 		Label labelTitle = new Label("New group:");
 		name = new TextField("Name:");
+		shortName = new TextField("Short name:");
 		keywords = new TextField("Keywords:");
 		description = new TextArea("Description:");
 		seoDescription = new TextArea("SEO Description:");
 
-		layout.addComponents(labelTitle, name, keywords, description, seoDescription);
+		layout.addComponents(labelTitle, name, shortName, keywords, description, seoDescription);
 
 		buttonSave = new SaveButton();
 		layout.addComponent(buttonSave);

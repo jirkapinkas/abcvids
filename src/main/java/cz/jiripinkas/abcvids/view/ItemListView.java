@@ -10,6 +10,7 @@ import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.Table;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
 import cz.jiripinkas.abcvids.annotation.UIComponent;
@@ -17,6 +18,7 @@ import cz.jiripinkas.abcvids.components.DeleteTableButton;
 import cz.jiripinkas.abcvids.components.MyCustomMenuBarView;
 import cz.jiripinkas.abcvids.components.NavigatorTableButton;
 import cz.jiripinkas.abcvids.dto.ItemOverviewDto;
+import cz.jiripinkas.abcvids.entity.Item;
 import cz.jiripinkas.abcvids.service.ItemService;
 import cz.jiripinkas.abcvids.ui.MyVaadinUI;
 
@@ -39,9 +41,18 @@ public class ItemListView extends MyCustomMenuBarView {
 
 		BeanContainer<Integer, ItemOverviewDto> container = new BeanContainer<Integer, ItemOverviewDto>(ItemOverviewDto.class);
 		container.setBeanIdProperty("id");
-		container.addAll(itemService.findAll(groupId));
+		container.addAll(itemService.findAllOverview(groupId));
 
 		table.setContainerDataSource(container);
+
+		table.removeGeneratedColumn("edit");
+		table.addGeneratedColumn("edit", new NavigatorTableButton("Edit") {
+
+			@Override
+			public void navigateToUrl(String id) {
+				getUI().getNavigator().navigateTo(MyVaadinUI.VIEW_ITEM_DETAIL + "/" + groupId + "/" + id);
+			}
+		});
 
 		table.removeGeneratedColumn("delete");
 		table.addGeneratedColumn("delete", new DeleteTableButton() {
@@ -52,12 +63,13 @@ public class ItemListView extends MyCustomMenuBarView {
 			}
 		});
 
-		table.removeGeneratedColumn("edit");
-		table.addGeneratedColumn("edit", new NavigatorTableButton("Edit") {
+		table.removeGeneratedColumn("public");
+		table.addGeneratedColumn("public", new NavigatorTableButton(">") {
 
 			@Override
 			public void navigateToUrl(String id) {
-				getUI().getNavigator().navigateTo(MyVaadinUI.VIEW_ITEM_DETAIL + "/" + groupId + "/" + id);
+				Item item = itemService.findOne(Integer.parseInt(id));
+				UI.getCurrent().getPage().open("/video/" + item.getShortName() + ".html", "_blank");
 			}
 		});
 

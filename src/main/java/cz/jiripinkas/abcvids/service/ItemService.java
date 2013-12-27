@@ -13,6 +13,7 @@ import cz.jiripinkas.abcvids.dto.ItemOverviewDto;
 import cz.jiripinkas.abcvids.entity.Item;
 import cz.jiripinkas.abcvids.repository.GroupRepository;
 import cz.jiripinkas.abcvids.repository.ItemRepository;
+import cz.jiripinkas.abcvids.util.MyUtil;
 
 @Transactional
 @Service
@@ -27,7 +28,7 @@ public class ItemService {
 	@Autowired
 	private DozerBeanMapper mapper;
 
-	public List<ItemOverviewDto> findAll(int groupId) {
+	public List<ItemOverviewDto> findAllOverview(int groupId) {
 		List<Item> list = itemRepository.findByGroupId(groupId);
 		List<ItemOverviewDto> result = new ArrayList<ItemOverviewDto>();
 		for (Item item : list) {
@@ -36,9 +37,16 @@ public class ItemService {
 		return result;
 	}
 	
+	public List<Item> findAll(int groupId) {
+		return itemRepository.findByGroupId(groupId);
+	}
+	
 	public void save(Item item, int groupId) {
 		item.setCreatedDate(new Date());
 		item.setGroup(groupRepository.findOne(groupId));
+		if(item.getShortName() == null || "".equals(item.getShortName())) {
+			item.setShortName(MyUtil.transformNameToShortName(item.getName()));
+		}	
 		itemRepository.save(item);
 	}
 
@@ -48,6 +56,14 @@ public class ItemService {
 
 	public Item findOne(int itemId) {
 		return itemRepository.findOne(itemId);
+	}
+
+	public List<Item> findAll(String groupShortName) {
+		return itemRepository.findByGroupShortName(groupShortName);
+	}
+
+	public Item findOne(String shortName) {
+		return itemRepository.findByShortName(shortName);
 	}
 
 }
