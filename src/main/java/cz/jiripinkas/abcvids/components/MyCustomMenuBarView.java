@@ -39,6 +39,14 @@ public abstract class MyCustomMenuBarView extends CustomComponent implements
 			}
 		});
 
+		mainItem.addItem("Change password", new MenuBar.Command() {
+			@Override
+			public void menuSelected(MenuItem selectedItem) {
+				getUI().getNavigator()
+						.navigateTo(MyVaadinUI.VIEW_USER_DETAIL);
+			}
+		});
+
 		mainItem.addItem("Logout", new MenuBar.Command() {
 			@Override
 			public void menuSelected(MenuItem selectedItem) {

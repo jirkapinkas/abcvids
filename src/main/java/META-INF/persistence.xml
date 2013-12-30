@@ -3,5 +3,7 @@
 	<persistence-unit name="testVaadin2">
 		<class>cz.jiripinkas.abcvids.entity.Item</class>
 		<class>cz.jiripinkas.abcvids.entity.Group</class>
+		<class>cz.jiripinkas.abcvids.entity.User</class>
+		<class>cz.jiripinkas.abcvids.entity.Role</class>
 	</persistence-unit>
 </persistence>

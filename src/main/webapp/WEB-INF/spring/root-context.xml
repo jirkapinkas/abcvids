@@ -11,7 +11,9 @@
    <jpa:repositories base-package="cz.jiripinkas.abcvids.repository" />
 
    <import resource="db.xml" />
-   
+
+   <import resource="security.xml" />
+
    <bean class="org.dozer.DozerBeanMapper" />
 
 </beans>

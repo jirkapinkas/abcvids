@@ -1,6 +1,8 @@
 package cz.jiripinkas.abcvids.service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 
@@ -10,8 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cz.jiripinkas.abcvids.entity.Group;
 import cz.jiripinkas.abcvids.entity.Item;
+import cz.jiripinkas.abcvids.entity.Role;
+import cz.jiripinkas.abcvids.entity.User;
 import cz.jiripinkas.abcvids.repository.GroupRepository;
 import cz.jiripinkas.abcvids.repository.ItemRepository;
+import cz.jiripinkas.abcvids.repository.RoleRepository;
+import cz.jiripinkas.abcvids.repository.UserRepository;
 import cz.jiripinkas.abcvids.util.MyUtil;
 
 @Transactional
@@ -23,9 +29,32 @@ public class InitDbService {
 
 	@Autowired
 	private GroupRepository groupRepository;
+	
+	@Autowired
+	private RoleRepository roleRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
+	
+	@Autowired
+	private UserService userService;
 
 	@PostConstruct
 	public void init() {
+		
+		Role roleAdmin = new Role();
+		roleAdmin.setName("ROLE_ADMIN");
+		roleRepository.save(roleAdmin);
+		
+		User userAdmin = new User();
+		userAdmin.setName("admin");
+		userAdmin.setPassword(userService.encodePassword("admin"));
+		userAdmin.setEnabled(true);
+		List<Role> userRoleList = new ArrayList<Role>();
+		userRoleList.add(roleAdmin);
+		userAdmin.setRoles(userRoleList);
+		userAdmin = userRepository.save(userAdmin);
+		
 		Group groupOracle = new Group();
 		groupOracle.setName("Oracle database");
 		groupOracle.setShortName(MyUtil.transformNameToShortName(groupOracle.getName()));

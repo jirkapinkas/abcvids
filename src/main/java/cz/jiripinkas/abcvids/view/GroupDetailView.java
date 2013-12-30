@@ -10,18 +10,17 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
+import com.vaadin.ui.RichTextArea;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
+import com.vaadin.ui.VerticalLayout;
 
 import cz.jiripinkas.abcvids.annotation.UIComponent;
-import cz.jiripinkas.abcvids.components.CancelButton;
+import cz.jiripinkas.abcvids.components.FormComponent;
 import cz.jiripinkas.abcvids.components.MyCustomMenuBarView;
-import cz.jiripinkas.abcvids.components.SaveButton;
 import cz.jiripinkas.abcvids.entity.Group;
 import cz.jiripinkas.abcvids.service.GroupService;
 import cz.jiripinkas.abcvids.ui.MyVaadinUI;
@@ -35,10 +34,12 @@ public class GroupDetailView extends MyCustomMenuBarView {
 	private TextField keywords;
 	private TextField name;
 	private TextField shortName;
-	private TextArea description;
+	private RichTextArea description;
 	private TextArea seoDescription;
 
 	private FieldGroup fieldGroup;
+
+	private FormComponent formComponent;
 
 	@Autowired
 	private GroupService groupService;
@@ -48,13 +49,14 @@ public class GroupDetailView extends MyCustomMenuBarView {
 		name.focus();
 		fieldGroup = new BeanFieldGroup<Group>(Group.class);
 		Group group = null;
-		if(event.getParameters().equals("")) {
-			System.out.println("disable short name");
+		if (event.getParameters().equals("")) {
 			group = new Group();
 			shortName.setVisible(false);
+			formComponent.setLabelValue("New group:");
 		} else {
 			group = groupService.findOne(Integer.parseInt(event.getParameters()));
 			shortName.setVisible(true);
+			formComponent.setLabelValue("Edit group:");
 		}
 		fieldGroup.setItemDataSource(new BeanItem<Group>(group));
 		fieldGroup.bindMemberFields(this);
@@ -62,23 +64,21 @@ public class GroupDetailView extends MyCustomMenuBarView {
 
 	@Override
 	protected Layout buildLayout() {
-		FormLayout layout = new FormLayout();
-		layout.setMargin(true);
-		
-		Label labelTitle = new Label("New group:");
+		VerticalLayout layout = new VerticalLayout();
+		formComponent = new FormComponent(500);
+
 		name = new TextField("Name:");
 		shortName = new TextField("Short name:");
 		keywords = new TextField("Keywords:");
-		description = new TextArea("Description:");
+		description = new RichTextArea("Description:");
 		seoDescription = new TextArea("SEO Description:");
 
-		layout.addComponents(labelTitle, name, shortName, keywords, description, seoDescription);
+		formComponent.addComponents(name, shortName, keywords, description, seoDescription);
 
-		buttonSave = new SaveButton();
-		layout.addComponent(buttonSave);
+		buttonSave = formComponent.getSaveButton();
+		buttonCancel = formComponent.getCancelButton();
 
-		buttonCancel = new CancelButton();
-		layout.addComponent(buttonCancel);
+		layout.addComponent(formComponent);
 
 		return layout;
 	}

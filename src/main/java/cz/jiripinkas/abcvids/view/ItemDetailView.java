@@ -10,18 +10,17 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
+import com.vaadin.ui.RichTextArea;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
+import com.vaadin.ui.VerticalLayout;
 
 import cz.jiripinkas.abcvids.annotation.UIComponent;
-import cz.jiripinkas.abcvids.components.CancelButton;
+import cz.jiripinkas.abcvids.components.FormComponent;
 import cz.jiripinkas.abcvids.components.MyCustomMenuBarView;
-import cz.jiripinkas.abcvids.components.SaveButton;
 import cz.jiripinkas.abcvids.entity.Item;
 import cz.jiripinkas.abcvids.service.ItemService;
 import cz.jiripinkas.abcvids.ui.MyVaadinUI;
@@ -36,13 +35,15 @@ public class ItemDetailView extends MyCustomMenuBarView {
 	private TextField name;
 	private TextField shortName;
 	private TextField keywords;
-	private TextArea description;
+	private RichTextArea description;
 	private TextArea seoDescription;
 	private TextField url;
 
 	private FieldGroup fieldGroup;
 
 	private int groupId;
+
+	private FormComponent formComponent;
 
 	@Autowired
 	private ItemService itemService;
@@ -51,7 +52,7 @@ public class ItemDetailView extends MyCustomMenuBarView {
 	public void enter(ViewChangeEvent event) {
 		name.focus();
 		String[] parameters = event.getParameters().split("/");
-		
+
 		groupId = Integer.parseInt(parameters[0]);
 
 		fieldGroup = new BeanFieldGroup<Item>(Item.class);
@@ -59,10 +60,12 @@ public class ItemDetailView extends MyCustomMenuBarView {
 		if (parameters.length == 1) {
 			item = new Item();
 			shortName.setVisible(false);
+			formComponent.setLabelValue("New item:");
 		} else {
 			int itemId = Integer.parseInt(parameters[1]);
 			item = itemService.findOne(itemId);
 			shortName.setVisible(true);
+			formComponent.setLabelValue("Edit item:");
 		}
 		fieldGroup.setItemDataSource(new BeanItem<Item>(item));
 		fieldGroup.bindMemberFields(this);
@@ -70,24 +73,22 @@ public class ItemDetailView extends MyCustomMenuBarView {
 
 	@Override
 	protected Layout buildLayout() {
-		FormLayout layout = new FormLayout();
-		layout.setMargin(true);
+		VerticalLayout layout = new VerticalLayout();
+		formComponent = new FormComponent(500);
 
-		Label labelTitle = new Label("New item:");
 		name = new TextField("Name:");
 		shortName = new TextField("Short name:");
 		keywords = new TextField("Keywords:");
-		description = new TextArea("Description:");
+		description = new RichTextArea("Description:");
 		seoDescription = new TextArea("SEO Description:");
 		url = new TextField("URL:");
 
-		layout.addComponents(labelTitle, name, shortName, keywords, description, seoDescription, url);
+		formComponent.addComponents(name, shortName, keywords, description, seoDescription, url);
 
-		buttonSave = new SaveButton();
-		layout.addComponent(buttonSave);
+		buttonSave = formComponent.getSaveButton();
+		buttonCancel = formComponent.getCancelButton();
 
-		buttonCancel = new CancelButton();
-		layout.addComponent(buttonCancel);
+		layout.addComponent(formComponent);
 
 		return layout;
 	}
