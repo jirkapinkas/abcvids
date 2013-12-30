@@ -5,6 +5,11 @@
 
 <jsp:include page="layout/header.jsp">
 	<jsp:param value="${item.name}" name="title" />
+	<jsp:param value="${item.group.shortName}" name="groupShortName"/>
+	<jsp:param value="${item.group.name}" name="groupName"/>
+	<jsp:param value="${item.shortName}" name="itemShortName"/>
+	<jsp:param value="${item.name}" name="itemName"/>
+	<jsp:param value="item" name="currpage" />
 </jsp:include>
 
 <h1>${item.name}</h1>

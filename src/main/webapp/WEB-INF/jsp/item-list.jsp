@@ -5,6 +5,9 @@
 
 <jsp:include page="layout/header.jsp">
 	<jsp:param value="${group.name}" name="title" />
+	<jsp:param value="${group.shortName}" name="groupShortName"/>
+	<jsp:param value="${group.name}" name="groupName"/>
+	<jsp:param value="item-list" name="currpage" />
 </jsp:include>
 
 <h1>${group.name}</h1>
@@ -13,9 +16,11 @@
 	<c:forEach items="${group.items}" var="item">
 		<tr>
 			<td>
-				<img src="<c:url value="/resources/images/play.png" />" alt="video" title="video" style="float:left;padding-right: 10px;" />
 				
-				<a href="<c:url value="/video/${item.shortName}.html" />"> ${item.name} </a>
+				<a href="<c:url value="/video/${item.shortName}.html" />"> 
+					<img src="<c:url value="/resources/images/play.png" />" alt="video" title="video" style="float:left;padding-right: 10px;" />
+					${item.name} 
+				</a>
 				<br />
 				${item.seoDescription}
 			</td>

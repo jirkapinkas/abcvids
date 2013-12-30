@@ -38,6 +38,12 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav" style="padding-left:114px">
 					<li class="${param.currpage eq 'group-list' ? 'active' : '' }"><a href="<c:url value="/" />">Home</a></li>
+					<c:if test="${param.groupShortName != null}">
+						<li class="${param.currpage eq 'item-list' ? 'active' : '' }"><a href="<c:url value="/tutorial/${param.groupShortName}.html" />">${param.groupName}</a></li>
+					</c:if>
+					<c:if test="${param.itemShortName != null}">
+						<li class="${param.currpage eq 'item' ? 'active' : '' }"><a href="<c:url value="/video/${param.itemShortName}.html" />">${param.itemName}</a></li>
+					</c:if>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
