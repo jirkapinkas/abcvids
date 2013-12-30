@@ -26,7 +26,7 @@ public class VidsController {
 
 	@RequestMapping("/tutorial/{shortName}")
 	public String getItems(Model model, @PathVariable String shortName) {
-		model.addAttribute("list", itemService.findAll(shortName));
+		model.addAttribute("group", groupService.findOne(shortName));
 		return "item-list";
 	}
 

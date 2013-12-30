@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${title}</title>
+<title>${param.title}</title>
 
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/bootstrap.min.css" />">
@@ -26,6 +26,7 @@
 
 		<!-- Static navbar -->
 		<div class="navbar navbar-default" role="navigation">
+		<a style="padding:0;margin:0;position: absolute;left:-3px" class="navbar-brand" href="<c:url value="/" />"><img src="/resources/images/logo.png" alt="logo" title="logo" /></a>
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target=".navbar-collapse">
@@ -33,12 +34,13 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="<c:url value="/" />">SQL Vids</a>
 			</div>
 			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="<c:url value="/" />">All groups</a></li>
+				<ul class="nav navbar-nav" style="padding-left:114px">
+					<li class="${param.currpage eq 'group-list' ? 'active' : '' }"><a href="<c:url value="/" />">Home</a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
 		</div>
+		
+		<div style="padding-bottom: 60px;"></div>

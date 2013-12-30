@@ -9,7 +9,10 @@
 
 <h1>${item.name}</h1>
 
-<p>${item.description}</p>
+<iframe width="750" height="411" src="//www.youtube.com/embed/${item.url}" frameborder="0" allowfullscreen></iframe>
 
+<h2>Annotation:</h2>
+
+<p>${item.description}</p>
 
 <jsp:include page="layout/footer.jsp" />

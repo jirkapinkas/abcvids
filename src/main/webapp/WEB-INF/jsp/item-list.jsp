@@ -4,15 +4,21 @@
 <%@ include file="layout/taglib.jsp"%>
 
 <jsp:include page="layout/header.jsp">
-	<jsp:param value="Group" name="title" />
+	<jsp:param value="${group.name}" name="title" />
 </jsp:include>
 
-<h1>group list:</h1>
+<h1>${group.name}</h1>
 
 <table class="table">
-	<c:forEach items="${list}" var="item">
+	<c:forEach items="${group.items}" var="item">
 		<tr>
-			<td><a href="<c:url value="/video/${item.shortName}.html" />"> ${item.name} </a></td>
+			<td>
+				<img src="<c:url value="/resources/images/play.png" />" alt="video" title="video" style="float:left;padding-right: 10px;" />
+				
+				<a href="<c:url value="/video/${item.shortName}.html" />"> ${item.name} </a>
+				<br />
+				${item.seoDescription}
+			</td>
 		</tr>
 	</c:forEach>
 </table>

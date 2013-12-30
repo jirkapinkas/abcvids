@@ -49,4 +49,8 @@ public class GroupService {
 		return groupRepository.findOne(groupId);
 	}
 
+	public Group findOne(String shortName) {
+		return groupRepository.findByShortName(shortName);
+	}
+
 }

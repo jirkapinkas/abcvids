@@ -4,10 +4,11 @@
 <%@ include file="layout/taglib.jsp"%>
 
 <jsp:include page="layout/header.jsp">
-	<jsp:param value="Group list" name="title" />
+	<jsp:param value="SQL video categories" name="title" />
+	<jsp:param value="group-list" name="currpage" />
 </jsp:include>
 
-<h1>group list:</h1>
+<h1>SQL video categories:</h1>
 
 <table class="table">
 	<c:forEach items="${list}" var="group">
