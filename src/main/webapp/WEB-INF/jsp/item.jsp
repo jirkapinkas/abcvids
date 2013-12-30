@@ -4,7 +4,7 @@
 <%@ include file="layout/taglib.jsp"%>
 
 <jsp:include page="layout/header.jsp">
-	<jsp:param value="Group list" name="title" />
+	<jsp:param value="${item.name}" name="title" />
 </jsp:include>
 
 <h1>${item.name}</h1>
