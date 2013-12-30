@@ -6,12 +6,14 @@ import java.util.List;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import cz.jiripinkas.abcvids.dto.GroupOverviewDto;
 import cz.jiripinkas.abcvids.entity.Group;
 import cz.jiripinkas.abcvids.repository.GroupRepository;
 import cz.jiripinkas.abcvids.util.MyUtil;
 
+@Transactional
 @Service
 public class GroupService {
 
