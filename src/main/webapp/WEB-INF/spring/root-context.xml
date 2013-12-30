@@ -10,10 +10,16 @@
 
    <jpa:repositories base-package="cz.jiripinkas.abcvids.repository" />
 
-   <import resource="db.xml" />
-
    <import resource="security.xml" />
 
    <bean class="org.dozer.DozerBeanMapper" />
+
+   <beans profile="dev">
+      <import resource="db-dev.xml" />
+   </beans>
+
+   <beans profile="prod">
+      <import resource="db-prod.xml" />
+   </beans>
 
 </beans>
