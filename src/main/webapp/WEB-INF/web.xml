@@ -52,6 +52,7 @@
       <servlet-name>appServlet</servlet-name>
       <url-pattern>*.html</url-pattern>
       <url-pattern>*.htm</url-pattern>
+      <url-pattern>/sitemap.xml</url-pattern>
    </servlet-mapping>
 
    <!-- Force UTF-8 encoding for requests -->

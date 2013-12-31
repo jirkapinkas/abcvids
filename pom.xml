@@ -47,6 +47,13 @@
 
    <dependencies>
 
+      <!-- Sitemap generator -->
+      <dependency>
+         <groupId>cz.jiripinkas</groupId>
+         <artifactId>jsitemapgenerator</artifactId>
+         <version>1.1</version>
+      </dependency>
+
       <!-- Heroku production database -->
       <dependency>
          <groupId>postgresql</groupId>

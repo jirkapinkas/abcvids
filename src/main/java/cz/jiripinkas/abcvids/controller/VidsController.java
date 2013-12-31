@@ -5,9 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import cz.jiripinkas.abcvids.service.GroupService;
 import cz.jiripinkas.abcvids.service.ItemService;
+import cz.jiripinkas.abcvids.service.SitemapService;
 
 @Controller
 public class VidsController {
@@ -17,6 +19,9 @@ public class VidsController {
 
 	@Autowired
 	private ItemService itemService;
+	
+	@Autowired
+	private SitemapService sitemapService;
 
 	@RequestMapping("/index")
 	public String getGroups(Model model) {
@@ -34,5 +39,15 @@ public class VidsController {
 	public String getVideo(Model model, @PathVariable String shortName) {
 		model.addAttribute("item", itemService.findOne(shortName));
 		return "item";
+	}
+	
+	@RequestMapping("/sitemap.xml")
+	@ResponseBody public String getSitemap() {
+		String result = "";
+		String[] sitemap = sitemapService.generateSitemap();
+		for (String string : sitemap) {
+			result += string;
+		}
+		return result;
 	}
 }
