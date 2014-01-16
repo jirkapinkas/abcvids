@@ -13,7 +13,11 @@
 <table class="table">
 	<c:forEach items="${list}" var="group">
 		<tr>
-			<td><a href="tutorial/${group.shortName}.html"> ${group.name} </a></td>
+			<td><a href="tutorial/${group.shortName}.html"> <img
+					alt="icon"
+					src="<c:url value="/resources/group-images/${group.image}" />" />
+					${group.name}
+			</a></td>
 		</tr>
 	</c:forEach>
 </table>

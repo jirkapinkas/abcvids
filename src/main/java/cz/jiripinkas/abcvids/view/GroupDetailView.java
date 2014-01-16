@@ -34,6 +34,7 @@ public class GroupDetailView extends MyCustomMenuBarView {
 	private TextField keywords;
 	private TextField name;
 	private TextField shortName;
+	private TextField image;
 	private RichTextArea description;
 	private TextArea seoDescription;
 
@@ -72,8 +73,9 @@ public class GroupDetailView extends MyCustomMenuBarView {
 		keywords = new TextField("Keywords:");
 		description = new RichTextArea("Description:");
 		seoDescription = new TextArea("SEO Description:");
+		image = new TextField("Image (from resources/group-images):");
 
-		formComponent.addComponents(name, shortName, keywords, description, seoDescription);
+		formComponent.addComponents(name, shortName, keywords, description, seoDescription, image);
 
 		buttonSave = formComponent.getSaveButton();
 		buttonCancel = formComponent.getCancelButton();

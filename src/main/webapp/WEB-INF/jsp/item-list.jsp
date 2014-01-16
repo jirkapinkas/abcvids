@@ -10,13 +10,12 @@
 	<jsp:param value="item-list" name="currpage" />
 </jsp:include>
 
-<h1>${group.name}</h1>
+<h1><img src="<c:url value="/resources/group-images/${group.image}" />" alt="icon" /> ${group.name}</h1>
 
 <table class="table">
 	<c:forEach items="${group.items}" var="item">
 		<tr>
 			<td>
-				
 				<a href="<c:url value="/video/${item.shortName}.html" />"> 
 					<img src="<c:url value="/resources/images/play.png" />" alt="video" title="video" style="float:left;padding-right: 10px;" />
 					${item.name} 

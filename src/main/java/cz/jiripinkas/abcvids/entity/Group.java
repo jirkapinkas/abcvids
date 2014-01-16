@@ -40,6 +40,17 @@ public class Group {
 	@OneToMany(mappedBy = "group")
 	private List<Item> items;
 
+	@Column(name = "group_image", nullable = false)
+	private String image = "default.jpg";
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	public String getShortName() {
 		return shortName;
 	}
