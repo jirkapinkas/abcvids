@@ -8,6 +8,8 @@
 	<jsp:param value="${group.shortName}" name="groupShortName"/>
 	<jsp:param value="${group.name}" name="groupName"/>
 	<jsp:param value="item-list" name="currpage" />
+	<jsp:param value="${group.keywords}" name="seoKeywords"/>
+	<jsp:param value="${group.seoDescription}" name="seoDescription"/>
 </jsp:include>
 
 <h1><img src="<c:url value="/resources/group-images/${group.image}" />" alt="icon" /> ${group.name}</h1>

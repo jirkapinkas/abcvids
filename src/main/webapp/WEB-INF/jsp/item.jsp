@@ -10,6 +10,8 @@
 	<jsp:param value="${item.shortName}" name="itemShortName"/>
 	<jsp:param value="${item.name}" name="itemName"/>
 	<jsp:param value="item" name="currpage" />
+	<jsp:param value="${item.keywords}" name="seoKeywords"/>
+	<jsp:param value="${item.seoDescription}" name="seoDescription"/>
 </jsp:include>
 
 <h1><img src="<c:url value="/resources/images/play.png" />" alt="video" title="video" /> ${item.name}</h1>

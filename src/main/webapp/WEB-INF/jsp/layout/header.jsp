@@ -14,24 +14,22 @@
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/bootstrap-theme.min.css" />">
 
+<meta name="title" content="${param.title}">
+<meta name="description" content="${param.seoDescription}">
+<meta name="keywords" content="${param.seoKeywords}">
+<meta name="robots" content="index, follow" />
+
+
 <script src="<c:url value="/resources/js/jquery-2.0.3.min.js" />"></script>
 
 <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
-<meta name="google-site-verification" content="rYaxPa0fLkhNvtDpke81BCrYbqJU6qSnrIn5g6IEcTE" />
+
+${GoogleSiteVerification}
+
 </head>
 <body>
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-4384433-14', 'sqlvids.com');
-  ga('send', 'pageview');
-
-</script>
-
+${GoogleAnalytics}
 
 	<div class="container">
 

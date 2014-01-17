@@ -12,6 +12,7 @@ import cz.jiripinkas.abcvids.view.GroupDetailView;
 import cz.jiripinkas.abcvids.view.GroupListView;
 import cz.jiripinkas.abcvids.view.ItemDetailView;
 import cz.jiripinkas.abcvids.view.ItemListView;
+import cz.jiripinkas.abcvids.view.SettingsView;
 import cz.jiripinkas.abcvids.view.UserDetailView;
 
 @Theme("mytheme")
@@ -30,9 +31,12 @@ public class MyVaadinUI extends UI {
 
 	@Autowired
 	private ItemDetailView itemDetailView;
-	
+
 	@Autowired
 	private UserDetailView userDetailView;
+
+	@Autowired
+	private SettingsView settingsView;
 
 	public static final String VIEW_GROUPS = "";
 
@@ -44,6 +48,8 @@ public class MyVaadinUI extends UI {
 
 	public static final String VIEW_USER_DETAIL = "user-detail";
 
+	public static final String VIEW_SETTINGS = "settings";
+
 	private Navigator navigator;
 
 	@Override
@@ -54,6 +60,7 @@ public class MyVaadinUI extends UI {
 		navigator.addView(VIEW_ITEMS, itemsView);
 		navigator.addView(VIEW_ITEM_DETAIL, itemDetailView);
 		navigator.addView(VIEW_USER_DETAIL, userDetailView);
+		navigator.addView(VIEW_SETTINGS, settingsView);
 	}
 
 }

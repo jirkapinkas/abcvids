@@ -11,9 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 import cz.jiripinkas.abcvids.annotation.DevProfile;
 import cz.jiripinkas.abcvids.entity.Group;
 import cz.jiripinkas.abcvids.entity.Item;
+import cz.jiripinkas.abcvids.entity.Settings;
 import cz.jiripinkas.abcvids.repository.GroupRepository;
 import cz.jiripinkas.abcvids.repository.ItemRepository;
 import cz.jiripinkas.abcvids.repository.RoleRepository;
+import cz.jiripinkas.abcvids.repository.SettingsRepository;
 import cz.jiripinkas.abcvids.util.MyUtil;
 
 @DevProfile
@@ -29,6 +31,9 @@ public class InitDbTestDataService {
 
 	@Autowired
 	private RoleRepository roleRepository;
+
+	@Autowired
+	private SettingsRepository settingsRepository;
 
 	@PostConstruct
 	public void init() {
@@ -62,5 +67,51 @@ public class InitDbTestDataService {
 		itemConnect.setUrl("http://youtube.com/");
 		itemRepository.save(itemConnect);
 
+		{
+			Settings settings = new Settings();
+			settings.setKey("GoogleSiteVerification");
+			settings.setValue("<meta name=\"google-site-verification\" content=\"rYaxPa0fLkhNvtDpke81BCrYbqJU6qSnrIn5g6IEcTE\" />");
+			settingsRepository.save(settings);
+		}
+
+		{
+			Settings settings = new Settings();
+			settings.setKey("GoogleAnalytics");
+			settings.setValue("<script>\n" + "  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){\n"
+					+ "  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),\n" + "  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)\n"
+					+ "  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');\n" + "\n" + "  ga('create', 'UA-4384433-14', 'sqlvids.com');\n" + "  ga('send', 'pageview');\n"
+					+ "\n" + "</script>");
+			settingsRepository.save(settings);
+		}
+
+		{
+			Settings settings = new Settings();
+			settings.setKey("Copyright");
+			settings.setValue("&copy; <a href=\"http://plus.google.com/100661368478614117231\" target=\"_blank\">Jirka Pinkas</a>, professional Java and Oracle DB trainer. All Rights Reserved.");
+			settingsRepository.save(settings);
+		}
+
+		{
+			Settings settings = new Settings();
+			settings.setKey("OtherProjects");
+			settings.setValue("My other projects: \n" + "<a href=\"http://www.javavids.com\" target=\"_blank\">Java video tutorials</a>\n"
+					+ "<a href=\"http://www.java-skoleni.cz\" target=\"_blank\">Java školení (in Czech language)</a>\n"
+					+ "<a href=\"http://www.sql-skoleni.cz\" target=\"_blank\">SQL školení (in Czech language)</a>\n");
+			settingsRepository.save(settings);
+		}
+
+		{
+			Settings settings = new Settings();
+			settings.setKey("HomepageSeoKeywords");
+			settings.setValue("sql, sql video, sql tutorial, online, free");
+			settingsRepository.save(settings);
+		}
+
+		{
+			Settings settings = new Settings();
+			settings.setKey("HomepageSeoDescription");
+			settings.setValue("Free online video tutorials about SQL and Oracle database.");
+			settingsRepository.save(settings);
+		}
 	}
 }

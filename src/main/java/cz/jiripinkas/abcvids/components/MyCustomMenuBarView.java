@@ -11,8 +11,7 @@ import com.vaadin.ui.VerticalLayout;
 import cz.jiripinkas.abcvids.ui.MyVaadinUI;
 
 @SuppressWarnings("serial")
-public abstract class MyCustomMenuBarView extends CustomComponent implements
-		View {
+public abstract class MyCustomMenuBarView extends CustomComponent implements View {
 
 	protected VerticalLayout mainLayout;
 
@@ -34,16 +33,20 @@ public abstract class MyCustomMenuBarView extends CustomComponent implements
 		mainItem.addItem("All groups", new MenuBar.Command() {
 			@Override
 			public void menuSelected(MenuItem selectedItem) {
-				getUI().getNavigator()
-						.navigateTo(MyVaadinUI.VIEW_GROUPS);
+				getUI().getNavigator().navigateTo(MyVaadinUI.VIEW_GROUPS);
 			}
 		});
 
+		mainItem.addItem("Settings", new MenuBar.Command() {
+			@Override
+			public void menuSelected(MenuItem selectedItem) {
+				getUI().getNavigator().navigateTo(MyVaadinUI.VIEW_SETTINGS);
+			}
+		});
 		mainItem.addItem("Change password", new MenuBar.Command() {
 			@Override
 			public void menuSelected(MenuItem selectedItem) {
-				getUI().getNavigator()
-						.navigateTo(MyVaadinUI.VIEW_USER_DETAIL);
+				getUI().getNavigator().navigateTo(MyVaadinUI.VIEW_USER_DETAIL);
 			}
 		});
 
