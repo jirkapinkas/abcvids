@@ -5,11 +5,13 @@
 <h2>To run in development mode (using embedded hsql database):</h2>
 
 <p>
-How to create a war file: <code>mvn package</code><br />
-How to run using embedded server: <code>mvn jetty:run -Dspring.profiles.active="dev"</code>
+First create a WAR file (also recompiles GWT widgetset): <code>mvn package</code><br />
+Run this application using embedded Jetty server: <code>mvn jetty:run -Dspring.profiles.active="dev"</code>
 </p>
 
 <p>This will start embedded Jetty server on port 8080 and you can access your application here: <code>http://localhost:8080</code></p>
+
+<p>Administration is here: <code>http://localhost:8080/admin</code></p>
 
 <h2>To deploy on Heroku:</h2>
 <p>
