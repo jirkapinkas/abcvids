@@ -12,7 +12,9 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.Layout;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 
 import cz.jiripinkas.abcvids.annotation.UIComponent;
@@ -99,6 +101,7 @@ public class SettingsView extends MyCustomMenuBarView {
 						settingsService.save(settingsForm.getSettings());
 					}
 				}
+				Notification.show("Settings saved");
 				getUI().getNavigator().navigateTo(MyVaadinUI.VIEW_SETTINGS);
 			}
 		});
