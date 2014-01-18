@@ -12,6 +12,8 @@
 
    <import resource="security.xml" />
 
+   <import resource="cache.xml" />
+
    <bean class="org.dozer.DozerBeanMapper" />
 
    <beans profile="dev">

@@ -12,6 +12,7 @@
 		<config>src/main/webapp/WEB-INF/spring/security.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/db-prod.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/db-dev.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/cache.xml</config>
 	</configs>
 	<configSets>
 	</configSets>
