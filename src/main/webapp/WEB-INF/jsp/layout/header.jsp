@@ -64,4 +64,4 @@ ${GoogleAnalytics}
 			${AdsenseBannerLeft}
 		</div>
 
-		<div style="float:right">
+		<div style="float:right;width:790px;">
