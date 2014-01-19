@@ -22,12 +22,12 @@ public class SettingsService {
 		return settingsRepository.findAll(new Sort("id"));
 	}
 
-	@CacheEvict("settings")
+	@CacheEvict(value = "settings", allEntries = true)
 	public Settings save(Settings settings) {
 		return settingsRepository.save(settings);
 	}
 
-	@CacheEvict("settings")
+	@CacheEvict(value = "settings", allEntries = true)
 	public void delete(Settings settings) {
 		settingsRepository.delete(settings);
 	}
