@@ -31,7 +31,7 @@ ${GoogleSiteVerification}
 
 ${GoogleAnalytics}
 
-	<div class="container">
+	<div class="container" style="width: 1000px;">
 
 		<!-- Static navbar -->
 		<div class="navbar navbar-default" role="navigation">
@@ -59,3 +59,9 @@ ${GoogleAnalytics}
 		</div>
 		
 		<div style="padding-bottom: 60px;"></div>
+		
+		<div style="float: left;padding-right: 20px">
+			${AdsenseBannerLeft}
+		</div>
+
+		<div style="float:right">

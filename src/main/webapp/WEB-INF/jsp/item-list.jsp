@@ -14,6 +14,8 @@
 
 <h1><img src="<c:url value="/resources/group-images/${group.image}" />" alt="icon" /> ${group.name}</h1>
 
+<p>${AdsenseBannerTop}</p>
+
 <table class="table">
 	<c:forEach items="${group.items}" var="item">
 		<tr>

@@ -113,5 +113,32 @@ public class InitDbTestDataService {
 			settings.setValue("Free online video tutorials about SQL and Oracle database.");
 			settingsRepository.save(settings);
 		}
+
+		{
+			Settings settings = new Settings();
+			settings.setKey("AdsenseBannerTop");
+			settings.setValue("<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script>\n" + "<!-- sqlvids banner -->\n" + "<ins class=\"adsbygoogle\"\n"
+					+ "     style=\"display:inline-block;width:728px;height:90px\"\n" + "     data-ad-client=\"ca-pub-7085637172523095\"\n" + "     data-ad-slot=\"2998000806\"></ins>\n"
+					+ "<script>\n" + "(adsbygoogle = window.adsbygoogle || []).push({});\n" + "</script>\n");
+			settingsRepository.save(settings);
+		}
+
+		{
+			Settings settings = new Settings();
+			settings.setKey("AdsenseBannerLeft");
+			settings.setValue("<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script>\n" + "<!-- sqlvids left -->\n" + "<ins class=\"adsbygoogle\"\n"
+					+ "     style=\"display:inline-block;width:160px;height:600px\"\n" + "     data-ad-client=\"ca-pub-7085637172523095\"\n" + "     data-ad-slot=\"7428200407\"></ins>\n"
+					+ "<script>\n" + "(adsbygoogle = window.adsbygoogle || []).push({});\n" + "</script>\n");
+			settingsRepository.save(settings);
+		}
+
+		{
+			Settings settings = new Settings();
+			settings.setKey("AdsenseBannerRight");
+			settings.setValue("<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script>\n" + "<!-- sqlvids right -->\n" + "<ins class=\"adsbygoogle\"\n"
+					+ "     style=\"display:inline-block;width:336px;height:280px\"\n" + "     data-ad-client=\"ca-pub-7085637172523095\"\n" + "     data-ad-slot=\"8904933606\"></ins>\n"
+					+ "<script>\n" + "(adsbygoogle = window.adsbygoogle || []).push({});\n" + "</script>\n");
+			settingsRepository.save(settings);
+		}
 	}
 }

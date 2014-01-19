@@ -16,6 +16,8 @@
 
 <h1><img src="<c:url value="/resources/images/play.png" />" alt="video" title="video" /> ${item.name}</h1>
 
+<p>${AdsenseBannerTop}</p>
+
 <iframe width="750" height="411" src="//www.youtube.com/embed/${item.url}" frameborder="0" allowfullscreen></iframe>
 
 <h2>Annotation:</h2>

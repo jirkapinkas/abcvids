@@ -12,6 +12,8 @@
 
 <h1>SQL video categories:</h1>
 
+<p>${AdsenseBannerTop}</p>
+
 <table class="table">
 	<c:forEach items="${list}" var="group">
 		<tr>

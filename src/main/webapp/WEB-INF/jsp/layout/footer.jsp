@@ -8,7 +8,10 @@
 	<p>This project on <a href="https://github.com/jirkapinkas/abcvids" target="_blank">GitHub</a></p>
 	<p>${OtherProjects}
 	</p>
-</footer>
+</footer>		
+
+</div> <!-- end float:right -->
+
 </div>
 <!-- /container -->
 
