@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
@@ -41,6 +42,7 @@ public class Group {
 	private String seoDescription = "";
 
 	@OneToMany(mappedBy = "group")
+	@OrderBy("createdDate")
 	private List<Item> items;
 
 	@Column(name = "group_image", nullable = false)
