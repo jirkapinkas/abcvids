@@ -8,8 +8,8 @@ import java.lang.annotation.Target;
 import org.springframework.context.annotation.Profile;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE, ElementType.METHOD})
-@Profile("dev")
+@Target({ ElementType.TYPE, ElementType.METHOD })
+@Profile({ "dev", "test" })
 public @interface DevProfile {
 
 }

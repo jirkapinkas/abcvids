@@ -13,6 +13,8 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 @Table(name = "vids_item")
 public class Item {
@@ -28,6 +30,7 @@ public class Item {
 	private String shortName = "";
 
 	@Lob
+	@Type(type = "org.hibernate.type.TextType")
 	@Column(nullable = false, length = Integer.MAX_VALUE)
 	@Basic(fetch = FetchType.LAZY)
 	private String description = "";

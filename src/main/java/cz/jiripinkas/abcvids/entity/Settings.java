@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 public class Settings {
 
@@ -17,6 +19,7 @@ public class Settings {
 	private String key;
 
 	@Lob
+	@Type(type = "org.hibernate.type.TextType")
 	@Column(nullable = false, length = Integer.MAX_VALUE)
 	private String value;
 

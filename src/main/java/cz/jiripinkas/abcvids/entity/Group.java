@@ -12,6 +12,8 @@ import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 @Table(name = "vids_group")
 public class Group {
@@ -27,6 +29,7 @@ public class Group {
 	private String shortName = "";
 
 	@Lob
+	@Type(type = "org.hibernate.type.TextType")
 	@Column(nullable = false, length = Integer.MAX_VALUE)
 	@Basic(fetch = FetchType.LAZY)
 	private String description = "";
