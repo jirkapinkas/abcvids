@@ -25,7 +25,7 @@
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/signin.css" />">
 
-<form action='/j_spring_security_check' method='post' class="form-signin">
+<form action='<c:url value="/j_spring_security_check" />' method='post' class="form-signin">
 	<h2 class="form-signin-heading">Please Sign In:</h2>
 	<input type='text' name='j_username' placeholder='Username' class="form-control" />
 	<input type='password' name='j_password' placeholder="Password" class="form-control" />
