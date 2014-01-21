@@ -35,7 +35,7 @@ ${GoogleAnalytics}
 
 		<!-- Static navbar -->
 		<div class="navbar navbar-default" role="navigation">
-		<a style="padding:0;margin:0;position: absolute;left:-3px" class="navbar-brand" href="<c:url value="/" />"><img src="/resources/images/logo.png" alt="logo" title="logo" /></a>
+		<a style="padding:0;margin:0;position: absolute;left:-3px" class="navbar-brand" href="<c:url value="/" />"><img src="<c:url value="/resources/images/logo.png" />" alt="logo" title="logo" /></a>
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target=".navbar-collapse">
