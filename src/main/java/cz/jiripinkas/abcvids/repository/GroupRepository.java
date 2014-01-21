@@ -8,7 +8,7 @@ import cz.jiripinkas.abcvids.entity.Group;
 
 public interface GroupRepository extends JpaRepository<Group, Integer> {
 
-	@Query("select g from Group g join fetch g.items where g.shortName = :shortName")
+	@Query("select g from Group g left join fetch g.items where g.shortName = :shortName")
 	Group findByShortName(@Param("shortName") String shortName);
 
 }

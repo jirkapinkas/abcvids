@@ -69,6 +69,41 @@ public class InitDbTestDataService {
 
 		{
 			Settings settings = new Settings();
+			settings.setKey("HomepageWelcomeHeader");
+			settings.setValue("Categories");
+			settingsRepository.save(settings);
+		}
+
+		{
+			Settings settings = new Settings();
+			settings.setKey("HomepageWelcomeParagraph");
+			settings.setValue("Welcome to SQL Vids, where are video tutorials about SQL language, Oracle database and SQL Developer");
+			settingsRepository.save(settings);
+		}
+
+		{
+			Settings settings = new Settings();
+			settings.setKey("LatestHeader");
+			settings.setValue("Latest posts");
+			settingsRepository.save(settings);
+		}
+
+		{
+			Settings settings = new Settings();
+			settings.setKey("TopLatestHeader");
+			settings.setValue("Latest posts");
+			settingsRepository.save(settings);
+		}
+
+		{
+			Settings settings = new Settings();
+			settings.setKey("AllLatestLink");
+			settings.setValue("All latest posts");
+			settingsRepository.save(settings);
+		}
+
+		{
+			Settings settings = new Settings();
 			settings.setKey("GoogleSiteVerification");
 			settings.setValue("<meta name=\"google-site-verification\" content=\"rYaxPa0fLkhNvtDpke81BCrYbqJU6qSnrIn5g6IEcTE\" />");
 			settingsRepository.save(settings);
@@ -140,5 +175,6 @@ public class InitDbTestDataService {
 					+ "<script>\n" + "(adsbygoogle = window.adsbygoogle || []).push({});\n" + "</script>\n");
 			settingsRepository.save(settings);
 		}
+
 	}
 }

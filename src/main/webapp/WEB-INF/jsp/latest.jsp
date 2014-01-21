@@ -4,13 +4,13 @@
 <%@ include file="layout/taglib.jsp"%>
 
 <jsp:include page="layout/header.jsp">
-	<jsp:param value="Latest SQL video tutorials" name="title" />
+	<jsp:param value="${LatestHeader}" name="title" />
 	<jsp:param value="item-list" name="currpage" />
 	<jsp:param value="${group.keywords}" name="seoKeywords"/>
 	<jsp:param value="${group.seoDescription}" name="seoDescription"/>
 </jsp:include>
 
-<h1>Latest SQL video tutorials</h1>
+<h1>${LatestHeader}:</h1>
 
 <p>${AdsenseBannerTop}</p>
 

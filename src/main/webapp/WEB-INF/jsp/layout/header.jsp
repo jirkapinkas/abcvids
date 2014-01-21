@@ -61,7 +61,7 @@ ${GoogleAnalytics}
 		<div style="padding-bottom: 60px;"></div>
 
 		<div style="float: left;padding-right: 20px;width:180px;">
-			<h3>Latest videos:</h3>
+			<h3>${TopLatestHeader}:</h3>
 			<c:forEach items="${latestVideos}" var="item">
 				<a href="<c:url value="/video/${item.shortName}.html" />">
 					<table>
@@ -78,7 +78,7 @@ ${GoogleAnalytics}
 				</a>
 				<br />
 			</c:forEach>
-				<a href="<c:url value="/latest.html" />">All latest videos</a>
+				<a href="<c:url value="/latest.html" />">${AllLatestLink}</a>
 			<br /><br />
 			${AdsenseBannerLeft}
 		</div>

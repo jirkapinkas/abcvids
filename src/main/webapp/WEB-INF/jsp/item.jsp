@@ -18,9 +18,10 @@
 
 <p>${AdsenseBannerTop}</p>
 
-<iframe width="750" height="411" src="//www.youtube.com/embed/${item.url}" frameborder="0" allowfullscreen></iframe>
-
-<h2>Annotation:</h2>
+<c:if test="${item.url != null && item.url != ''}">
+	<iframe width="750" height="411" src="//www.youtube.com/embed/${item.url}" frameborder="0" allowfullscreen></iframe>
+	<h2>Annotation:</h2>
+</c:if>
 
 <p>${item.description}</p>
 
