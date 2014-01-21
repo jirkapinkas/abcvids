@@ -70,7 +70,7 @@ ${GoogleAnalytics}
 								<img src="<c:url value="/resources/images/play.png" />" alt="play" title="play" />
 							</td>
 							<td>
-								<strong style="color: black"><fmt:formatDate value="${item.createdDate}" pattern="M/D/YYYY"/>:</strong><br />
+								<strong style="color: black"><fmt:formatDate value="${item.createdDate}" pattern="M/d/yyyy"/>:</strong><br />
 								${item.name}
 							</td>
 						</tr>

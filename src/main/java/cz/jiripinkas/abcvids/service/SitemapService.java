@@ -24,6 +24,7 @@ public class SitemapService {
 	public String[] generateSitemap() {
 		WebSitemapGenerator webSitemapGenerator = new WebSitemapGenerator("http://www.sqlvids.com");
 		webSitemapGenerator.addPage(new WebPage().setName("").setPriority(1.0));
+		webSitemapGenerator.addPage(new WebPage().setName("latest.html").setPriority(0.9));
 		List<Group> groups = groupRepository.findAll();
 		for (Group group : groups) {
 			webSitemapGenerator.addPage(new WebPage().setName("tutorial/" + group.getShortName() + ".html").setPriority(0.8));
