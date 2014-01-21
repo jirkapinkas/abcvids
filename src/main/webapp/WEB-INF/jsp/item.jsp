@@ -25,4 +25,8 @@
 
 <p>${item.description}</p>
 
+<p></p>
+
+${Disqus}
+
 <jsp:include page="layout/footer.jsp" />

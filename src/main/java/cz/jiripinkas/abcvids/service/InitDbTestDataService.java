@@ -176,5 +176,15 @@ public class InitDbTestDataService {
 			settingsRepository.save(settings);
 		}
 
+		{
+			Settings settings = new Settings();
+			settings.setKey("Disqus");
+			settings.setValue("<div id=\"disqus_thread\"></div>\n" + "<script type=\"text/javascript\">\n" + "    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */\n"
+					+ "    var disqus_shortname = 'sqlvids'; // required: replace example with your forum shortname\n" + "    /* * * DON'T EDIT BELOW THIS LINE * * */\n" + "    (function() {\n"
+					+ "        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;\n" + "        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';\n"
+					+ "        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);\n" + "    })();\n" + "</script>\n");
+			settingsRepository.save(settings);
+		}
+
 	}
 }
