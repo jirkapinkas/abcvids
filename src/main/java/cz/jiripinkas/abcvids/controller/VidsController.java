@@ -1,5 +1,7 @@
 package cz.jiripinkas.abcvids.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cz.jiripinkas.abcvids.entity.Item;
 import cz.jiripinkas.abcvids.service.GroupService;
 import cz.jiripinkas.abcvids.service.ItemService;
 import cz.jiripinkas.abcvids.service.SitemapService;
@@ -49,5 +52,12 @@ public class VidsController {
 			result += string;
 		}
 		return result;
+	}
+	
+	@RequestMapping("/latest")
+	public String getLatest(Model model) {
+		List<Item> items = itemService.findAllLatest();
+		model.addAttribute("items", items);
+		return "latest";
 	}
 }

@@ -6,6 +6,9 @@ import java.util.List;
 
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +24,7 @@ public class ItemService {
 
 	@Autowired
 	private ItemRepository itemRepository;
-	
+
 	@Autowired
 	private GroupRepository groupRepository;
 
@@ -36,17 +39,17 @@ public class ItemService {
 		}
 		return result;
 	}
-	
+
 	public List<Item> findAll(int groupId) {
 		return itemRepository.findByGroupId(groupId);
 	}
-	
+
 	public void save(Item item, int groupId) {
 		item.setCreatedDate(new Date());
 		item.setGroup(groupRepository.findOne(groupId));
-		if(item.getShortName() == null || "".equals(item.getShortName())) {
+		if (item.getShortName() == null || "".equals(item.getShortName())) {
 			item.setShortName(MyUtil.transformNameToShortName(item.getName()));
-		}	
+		}
 		itemRepository.save(item);
 	}
 
@@ -64,6 +67,14 @@ public class ItemService {
 
 	public Item findOne(String shortName) {
 		return itemRepository.findByShortName(shortName);
+	}
+
+	public List<Item> findLatest(int size) {
+		return itemRepository.findAll(new PageRequest(0, size, Direction.DESC, "createdDate")).getContent();
+	}
+
+	public List<Item> findAllLatest() {
+		return itemRepository.findAll(new Sort(Direction.DESC, "createdDate"));
 	}
 
 }

@@ -59,8 +59,27 @@ ${GoogleAnalytics}
 		</div>
 		
 		<div style="padding-bottom: 60px;"></div>
-		
-		<div style="float: left;padding-right: 20px">
+
+		<div style="float: left;padding-right: 20px;width:180px;">
+			<h3>Latest videos:</h3>
+			<c:forEach items="${latestVideos}" var="item">
+				<a href="<c:url value="/video/${item.shortName}.html" />">
+					<table>
+						<tr>
+							<td style="padding-right: 5px">
+								<img src="<c:url value="/resources/images/play.png" />" alt="play" title="play" />
+							</td>
+							<td>
+								<strong style="color: black"><fmt:formatDate value="${item.createdDate}" pattern="M/D/YYYY"/>:</strong><br />
+								${item.name}
+							</td>
+						</tr>
+					</table>
+				</a>
+				<br /><br />
+			</c:forEach>
+				<a href="<c:url value="/latest.html" />">All latest videos</a>
+			<br /><br />
 			${AdsenseBannerLeft}
 		</div>
 
