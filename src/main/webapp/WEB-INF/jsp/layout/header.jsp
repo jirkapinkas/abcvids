@@ -76,7 +76,7 @@ ${GoogleAnalytics}
 						</tr>
 					</table>
 				</a>
-				<br /><br />
+				<br />
 			</c:forEach>
 				<a href="<c:url value="/latest.html" />">All latest videos</a>
 			<br /><br />
