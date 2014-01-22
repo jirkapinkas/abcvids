@@ -22,6 +22,8 @@ import cz.jiripinkas.abcvids.components.NavigatorTableButton;
 import cz.jiripinkas.abcvids.dto.GroupOverviewDto;
 import cz.jiripinkas.abcvids.entity.Group;
 import cz.jiripinkas.abcvids.service.GroupService;
+import cz.jiripinkas.abcvids.service.InitDbSettingsService;
+import cz.jiripinkas.abcvids.service.SettingsService;
 import cz.jiripinkas.abcvids.ui.MyVaadinUI;
 
 @SuppressWarnings("serial")
@@ -34,6 +36,9 @@ public class GroupListView extends MyCustomMenuBarView {
 
 	@Autowired
 	private GroupService groupService;
+	
+	@Autowired
+	private SettingsService settingsService;
 
 	@Override
 	public void enter(ViewChangeEvent event) {
@@ -76,7 +81,7 @@ public class GroupListView extends MyCustomMenuBarView {
 			@Override
 			public void navigateToUrl(String id) {
 				Group group = groupService.findOne(Integer.parseInt(id));
-				UI.getCurrent().getPage().open("/tutorial/" + group.getShortName() + ".html", "_blank");
+				UI.getCurrent().getPage().open("/" + settingsService.findOne(InitDbSettingsService.SETTINGS_GROUP_URL_PART).getValue() + "/" + group.getShortName() + ".html", "_blank");
 			}
 		});
 
