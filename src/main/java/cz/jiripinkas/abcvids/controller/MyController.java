@@ -15,7 +15,7 @@ import cz.jiripinkas.abcvids.service.ItemService;
 import cz.jiripinkas.abcvids.service.SitemapService;
 
 @Controller
-public class VidsController {
+public class MyController {
 
 	@Autowired
 	private GroupService groupService;
