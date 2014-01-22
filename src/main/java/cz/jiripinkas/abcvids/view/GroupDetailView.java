@@ -13,7 +13,6 @@ import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
-import com.vaadin.ui.RichTextArea;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
@@ -21,6 +20,7 @@ import com.vaadin.ui.VerticalLayout;
 import cz.jiripinkas.abcvids.annotation.UIComponent;
 import cz.jiripinkas.abcvids.components.FormComponent;
 import cz.jiripinkas.abcvids.components.MyCustomMenuBarView;
+import cz.jiripinkas.abcvids.components.MyRichTextEditor;
 import cz.jiripinkas.abcvids.entity.Group;
 import cz.jiripinkas.abcvids.service.GroupService;
 import cz.jiripinkas.abcvids.ui.MyVaadinUI;
@@ -35,7 +35,7 @@ public class GroupDetailView extends MyCustomMenuBarView {
 	private TextField name;
 	private TextField shortName;
 	private TextField image;
-	private RichTextArea description;
+	private MyRichTextEditor description;
 	private TextArea seoDescription;
 
 	private FieldGroup fieldGroup;
@@ -71,7 +71,8 @@ public class GroupDetailView extends MyCustomMenuBarView {
 		name = new TextField("Name:");
 		shortName = new TextField("Short name:");
 		keywords = new TextField("Keywords:");
-		description = new RichTextArea("Description:");
+		description = new MyRichTextEditor("Description:");
+
 		seoDescription = new TextArea("SEO Description:");
 		image = new TextField("Image (from resources/group-images):");
 

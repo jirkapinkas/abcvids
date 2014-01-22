@@ -11,6 +11,10 @@
          <param-name>beanName</param-name>
          <param-value>myVaadinUI</param-value>
       </init-param>
+      <init-param>
+         <param-name>widgetset</param-name>
+         <param-value>cz.jiripinkas.abcvids.ui.AppWidgetSet</param-value>
+      </init-param>
    </servlet>
    <servlet-mapping>
       <servlet-name>Spring Vaadin Application</servlet-name>

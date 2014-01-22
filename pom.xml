@@ -140,6 +140,13 @@
          <version>${hibernate.version}</version>
       </dependency>
 
+      <!-- CKEditor plugin (rich text editor) -->
+      <dependency>
+         <groupId>org.vaadin.addons</groupId>
+         <artifactId>ckeditor-wrapper-for-vaadin</artifactId>
+         <version>7.8.8</version>
+      </dependency>
+
       <!-- Vaadin Confirm Dialog -->
       <dependency>
          <groupId>org.vaadin.addon</groupId>
