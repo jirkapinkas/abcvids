@@ -12,7 +12,7 @@
 	<jsp:param value="${group.seoDescription}" name="seoDescription"/>
 </jsp:include>
 
-<h1><img src="<c:url value="/resources/group-images/${group.image}" />" alt="icon" /> ${group.name}</h1>
+<h1><img src="<c:url value="/resources/images/${group.image}" />" alt="icon" /> ${group.name}</h1>
 
 <p>${AdsenseBannerTop}</p>
 
