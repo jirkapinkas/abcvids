@@ -46,7 +46,7 @@ public class Group {
 	private List<Item> items;
 
 	@Column(name = "group_image", nullable = false)
-	private String image = "default.jpg";
+	private String image = "";
 
 	public String getImage() {
 		return image;

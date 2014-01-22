@@ -23,6 +23,7 @@ import cz.jiripinkas.abcvids.components.MyCustomMenuBarView;
 import cz.jiripinkas.abcvids.components.MyRichTextEditor;
 import cz.jiripinkas.abcvids.entity.Item;
 import cz.jiripinkas.abcvids.service.ItemService;
+import cz.jiripinkas.abcvids.service.SettingsService;
 import cz.jiripinkas.abcvids.ui.MyVaadinUI;
 
 @SuppressWarnings("serial")
@@ -38,6 +39,7 @@ public class ItemDetailView extends MyCustomMenuBarView {
 	private MyRichTextEditor description;
 	private TextArea seoDescription;
 	private TextField url;
+	private TextField image;
 
 	private FieldGroup fieldGroup;
 
@@ -47,6 +49,9 @@ public class ItemDetailView extends MyCustomMenuBarView {
 
 	@Autowired
 	private ItemService itemService;
+
+	@Autowired
+	private SettingsService settingsService;
 
 	@Override
 	public void enter(ViewChangeEvent event) {
@@ -60,6 +65,7 @@ public class ItemDetailView extends MyCustomMenuBarView {
 		if (parameters.length == 1) {
 			item = new Item();
 			shortName.setVisible(false);
+			item.setImage(settingsService.findOne("ImageItemLogo").getValue());
 			formComponent.setLabelValue("New item:");
 		} else {
 			int itemId = Integer.parseInt(parameters[1]);
@@ -81,9 +87,10 @@ public class ItemDetailView extends MyCustomMenuBarView {
 		keywords = new TextField("Keywords:");
 		description = new MyRichTextEditor("Description:");
 		seoDescription = new TextArea("SEO Description:");
+		image = new TextField("Image (from images folder):");
 		url = new TextField("URL:");
 
-		formComponent.addComponents(name, shortName, keywords, description, seoDescription, url);
+		formComponent.addComponents(name, shortName, keywords, description, seoDescription, url, image);
 
 		buttonSave = formComponent.getSaveButton();
 		buttonCancel = formComponent.getCancelButton();

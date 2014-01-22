@@ -21,7 +21,7 @@
 		<tr>
 			<td>
 				<a href="<c:url value="/video/${item.shortName}.html" />"> 
-					<img src="<c:url value="/resources/images/play.png" />" alt="video" title="video" style="float:left;padding-right: 10px;" />
+					<img src="<c:url value="/resources/images/${item.image}" />" alt="video" title="video" style="float:left;padding-right: 10px;" />
 					${item.name} 
 				</a>
 				<br />

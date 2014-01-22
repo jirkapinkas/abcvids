@@ -31,4 +31,8 @@ public class SettingsService {
 	public void delete(Settings settings) {
 		settingsRepository.delete(settings);
 	}
+
+	public Settings findOne(String key) {
+		return settingsRepository.findByKey(key);
+	}
 }

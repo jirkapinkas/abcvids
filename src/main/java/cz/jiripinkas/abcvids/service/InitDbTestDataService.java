@@ -34,7 +34,7 @@ public class InitDbTestDataService {
 
 	@Autowired
 	private SettingsRepository settingsRepository;
-
+	
 	@PostConstruct
 	public void init() {
 		Group groupOracle = new Group();
@@ -43,6 +43,7 @@ public class InitDbTestDataService {
 		groupOracle.setDescription("All about Oracle database");
 		groupOracle.setKeywords("oracle, database");
 		groupOracle.setSeoDescription("Oracle DB");
+		groupOracle.setImage("group-default.jpg");
 		groupOracle = groupRepository.save(groupOracle);
 
 		Item itemInstallation = new Item();
@@ -54,6 +55,7 @@ public class InitDbTestDataService {
 		itemInstallation.setSeoDescription("Installing Oracle XE");
 		itemInstallation.setKeywords("oracle, installation");
 		itemInstallation.setUrl("http://youtube.com/");
+		itemInstallation.setImage("item-default.png");
 		itemRepository.save(itemInstallation);
 
 		Item itemConnect = new Item();
@@ -65,7 +67,29 @@ public class InitDbTestDataService {
 		itemConnect.setSeoDescription("Connecting to Oracle db.");
 		itemConnect.setKeywords("oracle, connection");
 		itemConnect.setUrl("http://youtube.com/");
+		itemConnect.setImage("item-default.png");
 		itemRepository.save(itemConnect);
+
+		{
+			Settings settings = new Settings();
+			settings.setKey("ImageSiteLogo");
+			settings.setValue("logo-default.png");
+			settingsRepository.save(settings);
+		}
+
+		{
+			Settings settings = new Settings();
+			settings.setKey("ImageItemLogo");
+			settings.setValue("item-default.png");
+			settingsRepository.save(settings);
+		}
+
+		{
+			Settings settings = new Settings();
+			settings.setKey("ImageGroupLogo");
+			settings.setValue("group-default.jpg");
+			settingsRepository.save(settings);
+		}
 
 		{
 			Settings settings = new Settings();

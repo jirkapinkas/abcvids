@@ -23,6 +23,7 @@ import cz.jiripinkas.abcvids.components.MyCustomMenuBarView;
 import cz.jiripinkas.abcvids.components.MyRichTextEditor;
 import cz.jiripinkas.abcvids.entity.Group;
 import cz.jiripinkas.abcvids.service.GroupService;
+import cz.jiripinkas.abcvids.service.SettingsService;
 import cz.jiripinkas.abcvids.ui.MyVaadinUI;
 
 @SuppressWarnings("serial")
@@ -45,6 +46,9 @@ public class GroupDetailView extends MyCustomMenuBarView {
 	@Autowired
 	private GroupService groupService;
 
+	@Autowired
+	private SettingsService settingsService;
+
 	@Override
 	public void enter(ViewChangeEvent event) {
 		name.focus();
@@ -53,6 +57,7 @@ public class GroupDetailView extends MyCustomMenuBarView {
 		if (event.getParameters().equals("")) {
 			group = new Group();
 			shortName.setVisible(false);
+			group.setImage(settingsService.findOne("ImageGroupLogo").getValue());
 			formComponent.setLabelValue("New group:");
 		} else {
 			group = groupService.findOne(Integer.parseInt(event.getParameters()));
@@ -74,7 +79,7 @@ public class GroupDetailView extends MyCustomMenuBarView {
 		description = new MyRichTextEditor("Description:");
 
 		seoDescription = new TextArea("SEO Description:");
-		image = new TextField("Image (from resources/group-images):");
+		image = new TextField("Image (from images folder):");
 
 		formComponent.addComponents(name, shortName, keywords, description, seoDescription, image);
 

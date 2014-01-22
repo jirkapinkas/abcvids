@@ -47,9 +47,20 @@ public class Item {
 	@Column(length = 300, nullable = false)
 	private String url = "";
 
+	@Column(name = "item_image", nullable = false)
+	private String image = "";
+
 	@ManyToOne
 	@JoinColumn(name = "group_id")
 	private Group group;
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 
 	public String getShortName() {
 		return shortName;

@@ -35,7 +35,7 @@ ${GoogleAnalytics}
 
 		<!-- Static navbar -->
 		<div class="navbar navbar-default" role="navigation">
-		<a style="padding:0;margin:0;position: absolute;left:-3px" class="navbar-brand" href="<c:url value="/" />"><img src="<c:url value="/resources/images/logo.png" />" alt="logo" title="logo" /></a>
+		<a style="padding:0;margin:0;position: absolute;left:-3px" class="navbar-brand" href="<c:url value="/" />"><img src="<c:url value="/resources/images/${ImageSiteLogo}" />" alt="logo" title="logo" /></a>
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target=".navbar-collapse">
@@ -67,7 +67,7 @@ ${GoogleAnalytics}
 					<table>
 						<tr>
 							<td style="padding-right: 5px">
-								<img src="<c:url value="/resources/images/play.png" />" alt="play" title="play" />
+								<img src="<c:url value="/resources/images/${item.image}" />" alt="play" title="play" />
 							</td>
 							<td>
 								<strong style="color: black"><fmt:formatDate value="${item.createdDate}" pattern="M/d/yyyy"/>:</strong><br />

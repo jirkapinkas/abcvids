@@ -21,7 +21,7 @@
 		<tr>
 			<td><a href="tutorial/${group.shortName}.html"> <img
 					alt="icon"
-					src="<c:url value="/resources/group-images/${group.image}" />" />
+					src="<c:url value="/resources/images/${group.image}" />" />
 					${group.name}
 			</a></td>
 		</tr>
