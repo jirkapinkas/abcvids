@@ -14,27 +14,28 @@ import cz.jiripinkas.jsitemapgenerator.WebSitemapGenerator;
 
 @Service
 public class SitemapService {
-	
+
 	@Autowired
 	private ItemRepository itemRepository;
-	
+
 	@Autowired
 	private GroupRepository groupRepository;
-	
+
 	@Autowired
 	private SettingsService settingsService;
 
 	public String[] generateSitemap() {
-		WebSitemapGenerator webSitemapGenerator = new WebSitemapGenerator(settingsService.findOne("WebSiteUrl").getValue());
+		WebSitemapGenerator webSitemapGenerator = new WebSitemapGenerator(settingsService.findOne(InitDbSettingsService.SETTINGS_WEB_SITE_URL).getValue());
 		webSitemapGenerator.addPage(new WebPage().setName("").setPriority(1.0));
 		webSitemapGenerator.addPage(new WebPage().setName("latest.html").setPriority(0.9));
 		List<Group> groups = groupRepository.findAll();
 		for (Group group : groups) {
-			webSitemapGenerator.addPage(new WebPage().setName("tutorial/" + group.getShortName() + ".html").setPriority(0.8));
+			webSitemapGenerator.addPage(new WebPage().setName(settingsService.findOne(InitDbSettingsService.SETTINGS_GROUP_URL_PART).getValue() + "/" + group.getShortName() + ".html")
+					.setPriority(0.8));
 		}
 		List<Item> items = itemRepository.findAll();
 		for (Item item : items) {
-			webSitemapGenerator.addPage(new WebPage().setName("video/" + item.getShortName() + ".html").setPriority(0.6));
+			webSitemapGenerator.addPage(new WebPage().setName(settingsService.findOne(InitDbSettingsService.SETTINGS_ITEM_URL_PART).getValue() + "/" + item.getShortName() + ".html").setPriority(0.6));
 		}
 		return webSitemapGenerator.constructSitemap();
 	}

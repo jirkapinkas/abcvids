@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cz.jiripinkas.abcvids.entity.Item;
 import cz.jiripinkas.abcvids.service.GroupService;
+import cz.jiripinkas.abcvids.service.InitDbSettingsService;
 import cz.jiripinkas.abcvids.service.ItemService;
+import cz.jiripinkas.abcvids.service.SettingsService;
 import cz.jiripinkas.abcvids.service.SitemapService;
 
 @Controller
@@ -25,6 +27,9 @@ public class MyController {
 	
 	@Autowired
 	private SitemapService sitemapService;
+	
+	@Autowired
+	private SettingsService settingsService;
 
 	@RequestMapping("/index")
 	public String getGroups(Model model) {
@@ -32,18 +37,17 @@ public class MyController {
 		return "group-list";
 	}
 
-	@RequestMapping("/tutorial/{shortName}")
-	public String getItems(Model model, @PathVariable String shortName) {
-		model.addAttribute("group", groupService.findOne(shortName));
-		return "item-list";
+	@RequestMapping("/{service}/{shortName}")
+	public String getItems(Model model, @PathVariable String service, @PathVariable String shortName) {
+		if(service.equals(settingsService.findOne(InitDbSettingsService.SETTINGS_GROUP_URL_PART).getValue())) {
+			model.addAttribute("group", groupService.findOne(shortName));
+			return "item-list";
+		} else {
+			model.addAttribute("item", itemService.findOne(shortName));
+			return "item";
+		}
 	}
 
-	@RequestMapping("/video/{shortName}")
-	public String getVideo(Model model, @PathVariable String shortName) {
-		model.addAttribute("item", itemService.findOne(shortName));
-		return "item";
-	}
-	
 	@RequestMapping("/sitemap.xml")
 	@ResponseBody public String getSitemap() {
 		String result = "";

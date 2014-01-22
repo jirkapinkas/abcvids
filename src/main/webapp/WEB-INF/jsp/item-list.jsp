@@ -20,7 +20,7 @@
 	<c:forEach items="${group.items}" var="item">
 		<tr>
 			<td>
-				<a href="<c:url value="/video/${item.shortName}.html" />"> 
+				<a href="<c:url value="/${ItemUrlPart}/${item.shortName}.html" />"> 
 					<img src="<c:url value="/resources/images/${item.image}" />" alt="video" title="video" style="float:left;padding-right: 10px;" />
 					${item.name} 
 				</a>

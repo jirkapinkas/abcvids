@@ -19,7 +19,9 @@ import cz.jiripinkas.abcvids.components.MyCustomMenuBarView;
 import cz.jiripinkas.abcvids.components.NavigatorTableButton;
 import cz.jiripinkas.abcvids.dto.ItemOverviewDto;
 import cz.jiripinkas.abcvids.entity.Item;
+import cz.jiripinkas.abcvids.service.InitDbSettingsService;
 import cz.jiripinkas.abcvids.service.ItemService;
+import cz.jiripinkas.abcvids.service.SettingsService;
 import cz.jiripinkas.abcvids.ui.MyVaadinUI;
 
 @SuppressWarnings("serial")
@@ -34,6 +36,9 @@ public class ItemListView extends MyCustomMenuBarView {
 	private Table table;
 
 	private int groupId;
+	
+	@Autowired
+	private SettingsService settingsService;
 
 	@Override
 	public void enter(ViewChangeEvent event) {
@@ -69,7 +74,7 @@ public class ItemListView extends MyCustomMenuBarView {
 			@Override
 			public void navigateToUrl(String id) {
 				Item item = itemService.findOne(Integer.parseInt(id));
-				UI.getCurrent().getPage().open("/video/" + item.getShortName() + ".html", "_blank");
+				UI.getCurrent().getPage().open("/" + settingsService.findOne(InitDbSettingsService.SETTINGS_ITEM_URL_PART).getValue() + "/" + item.getShortName() + ".html", "_blank");
 			}
 		});
 

@@ -48,10 +48,10 @@ ${GoogleAnalytics}
 				<ul class="nav navbar-nav" style="padding-left:114px">
 					<li class="${param.currpage eq 'group-list' ? 'active' : '' }"><a href="<c:url value="/" />">${HomeButton}</a></li>
 					<c:if test="${param.groupShortName != null}">
-						<li class="${param.currpage eq 'item-list' ? 'active' : '' }"><a href="<c:url value="/tutorial/${param.groupShortName}.html" />">${param.groupName}</a></li>
+						<li class="${param.currpage eq 'item-list' ? 'active' : '' }"><a href="<c:url value="/${GroupUrlPart}/${param.groupShortName}.html" />">${param.groupName}</a></li>
 					</c:if>
 					<c:if test="${param.itemShortName != null}">
-						<li class="${param.currpage eq 'item' ? 'active' : '' }"><a href="<c:url value="/video/${param.itemShortName}.html" />">${param.itemName}</a></li>
+						<li class="${param.currpage eq 'item' ? 'active' : '' }"><a href="<c:url value="/${ItemUrlPart}/${param.itemShortName}.html" />">${param.itemName}</a></li>
 					</c:if>
 				</ul>
 			</div>
@@ -63,7 +63,7 @@ ${GoogleAnalytics}
 		<div style="float: left;padding-right: 20px;width:180px;">
 			<h3>${TopLatestHeader}:</h3>
 			<c:forEach items="${latestVideos}" var="item">
-				<a href="<c:url value="/video/${item.shortName}.html" />">
+				<a href="<c:url value="/${ItemUrlPart}/${item.shortName}.html" />">
 					<table>
 						<tr>
 							<td style="padding-right: 5px">

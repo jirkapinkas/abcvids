@@ -19,7 +19,7 @@
 <table class="table">
 	<c:forEach items="${list}" var="group">
 		<tr>
-			<td><a href="tutorial/${group.shortName}.html"> <img
+			<td><a href="${GroupUrlPart}/${group.shortName}.html"> <img
 					alt="icon"
 					src="<c:url value="/resources/images/${group.image}" />" />
 					${group.name}

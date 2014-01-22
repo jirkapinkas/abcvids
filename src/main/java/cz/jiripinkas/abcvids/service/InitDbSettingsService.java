@@ -14,9 +14,15 @@ public class InitDbSettingsService {
 	@Autowired
 	private SettingsRepository settingsRepository;
 
+	public static final String SETTINGS_GROUP_URL_PART = "GroupUrlPart";
+	public static final String SETTINGS_ITEM_URL_PART = "ItemUrlPart";
+	public static final String SETTINGS_WEB_SITE_URL = "WebSiteUrl";
+
 	@PostConstruct
 	public void init() {
-		addSettings("WebSiteUrl", "http://www.sqlvids.com");
+		addSettings(SETTINGS_GROUP_URL_PART, "tutorial");
+		addSettings(SETTINGS_ITEM_URL_PART, "video");
+		addSettings(SETTINGS_WEB_SITE_URL, "http://www.sqlvids.com");
 		addSettings("ImageSiteLogo", "logo-default.png");
 		addSettings("ImageItemLogo", "item-default.png");
 		addSettings("ImageGroupLogo", "group-default.jpg");
