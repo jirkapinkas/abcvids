@@ -20,9 +20,12 @@ public class SitemapService {
 	
 	@Autowired
 	private GroupRepository groupRepository;
+	
+	@Autowired
+	private SettingsService settingsService;
 
 	public String[] generateSitemap() {
-		WebSitemapGenerator webSitemapGenerator = new WebSitemapGenerator("http://www.sqlvids.com");
+		WebSitemapGenerator webSitemapGenerator = new WebSitemapGenerator(settingsService.findOne("WebSiteUrl").getValue());
 		webSitemapGenerator.addPage(new WebPage().setName("").setPriority(1.0));
 		webSitemapGenerator.addPage(new WebPage().setName("latest.html").setPriority(0.9));
 		List<Group> groups = groupRepository.findAll();

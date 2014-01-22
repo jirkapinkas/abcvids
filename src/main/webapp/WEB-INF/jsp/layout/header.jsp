@@ -35,7 +35,7 @@ ${GoogleAnalytics}
 
 		<!-- Static navbar -->
 		<div class="navbar navbar-default" role="navigation">
-		<a style="padding:0;margin:0;position: absolute;left:-3px" class="navbar-brand" href="<c:url value="/" />"><img src="<c:url value="/resources/images/${ImageSiteLogo}" />" alt="logo" title="logo" /></a>
+		<a style="padding:0;margin:0;position: absolute;left:-3px" class="navbar-brand" href="<c:url value="/" />"><img src="<c:url value="/resources/images/${ImageSiteLogo}" />" alt="${SiteName}" title="${SiteName}" /></a>
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target=".navbar-collapse">
@@ -46,7 +46,7 @@ ${GoogleAnalytics}
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav" style="padding-left:114px">
-					<li class="${param.currpage eq 'group-list' ? 'active' : '' }"><a href="<c:url value="/" />">Home</a></li>
+					<li class="${param.currpage eq 'group-list' ? 'active' : '' }"><a href="<c:url value="/" />">${HomeButton}</a></li>
 					<c:if test="${param.groupShortName != null}">
 						<li class="${param.currpage eq 'item-list' ? 'active' : '' }"><a href="<c:url value="/tutorial/${param.groupShortName}.html" />">${param.groupName}</a></li>
 					</c:if>
@@ -67,10 +67,10 @@ ${GoogleAnalytics}
 					<table>
 						<tr>
 							<td style="padding-right: 5px">
-								<img src="<c:url value="/resources/images/${item.image}" />" alt="play" title="play" />
+								<img src="<c:url value="/resources/images/${item.image}" />" alt="post" title="post" />
 							</td>
 							<td>
-								<strong style="color: black"><fmt:formatDate value="${item.createdDate}" pattern="M/d/yyyy"/>:</strong><br />
+								<strong style="color: black"><fmt:formatDate value="${item.createdDate}" pattern="${DateFormat}"/>:</strong><br />
 								${item.name}
 							</td>
 						</tr>

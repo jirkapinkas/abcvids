@@ -16,10 +16,14 @@ public class InitDbSettingsService {
 
 	@PostConstruct
 	public void init() {
+		addSettings("WebSiteUrl", "http://www.sqlvids.com");
 		addSettings("ImageSiteLogo", "logo-default.png");
 		addSettings("ImageItemLogo", "item-default.png");
 		addSettings("ImageGroupLogo", "group-default.jpg");
 		addSettings("HomepageWelcomeHeader", "Categories");
+		addSettings("DateFormat", "M/d/yyyy");
+		addSettings("HomeButton", "Home");
+		addSettings("SiteName", "SQL video tutorials");
 		addSettings("HomepageWelcomeParagraph", "Welcome to SQL Vids, where are video tutorials about SQL language, Oracle database and SQL Developer");
 		addSettings("LatestHeader", "Latest posts");
 		addSettings("TopLatestHeader", "Latest posts");
