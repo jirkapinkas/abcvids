@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -44,6 +46,7 @@ public class ItemService {
 		return itemRepository.findByGroupId(groupId);
 	}
 
+	@CacheEvict(value = "topItems", allEntries = true)
 	public void save(Item item, int groupId) {
 		item.setCreatedDate(new Date());
 		item.setGroup(groupRepository.findOne(groupId));
@@ -53,6 +56,7 @@ public class ItemService {
 		itemRepository.save(item);
 	}
 
+	@CacheEvict(value = "topItems", allEntries = true)
 	public void delete(int itemId) {
 		itemRepository.delete(itemId);
 	}
@@ -69,6 +73,7 @@ public class ItemService {
 		return itemRepository.findByShortName(shortName);
 	}
 
+	@Cacheable("topItems")
 	public List<Item> findLatest(int size) {
 		return itemRepository.findAll(new PageRequest(0, size, Direction.DESC, "createdDate")).getContent();
 	}

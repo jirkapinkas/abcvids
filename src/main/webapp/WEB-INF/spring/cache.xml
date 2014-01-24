@@ -13,6 +13,9 @@
             <bean
                class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
                p:name="settings" />
+            <bean
+               class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+               p:name="topItems" />
          </set>
       </property>
    </bean>
