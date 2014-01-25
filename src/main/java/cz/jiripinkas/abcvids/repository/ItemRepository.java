@@ -13,9 +13,7 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
 	@Query("select i from Item i join fetch i.group where i.group.id = :groupId order by i.createdDate")
 	List<Item> findByGroupId(@Param("groupId") int groupId);
 
-	@Query("select i from Item i join fetch i.group where i.group.shortName = :shortName order by i.createdDate")
-	List<Item> findByGroupShortName(@Param("shortName") String groupShortName);
-
-	Item findByShortName(String shortName);
+	@Query("select i from Item i join fetch i.group where i.shortName = :shortName")
+	Item findByShortName(@Param("shortName") String shortName);
 
 }

@@ -65,10 +65,6 @@ public class ItemService {
 		return itemRepository.findOne(itemId);
 	}
 
-	public List<Item> findAll(String groupShortName) {
-		return itemRepository.findByGroupShortName(groupShortName);
-	}
-
 	public Item findOne(String shortName) {
 		return itemRepository.findByShortName(shortName);
 	}

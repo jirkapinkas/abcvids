@@ -32,6 +32,7 @@ public class SettingsService {
 		settingsRepository.delete(settings);
 	}
 
+	@Cacheable("settings")
 	public Settings findOne(String key) {
 		return settingsRepository.findByKey(key);
 	}
