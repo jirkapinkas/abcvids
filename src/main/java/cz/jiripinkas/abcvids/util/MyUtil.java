@@ -17,6 +17,7 @@ public final class MyUtil {
         string = string.replace("Ň", "N");
         string = string.replace("ó", "o");
         string = string.replace("Ó", "O");
+        string = string.replace("ß", "ss");
         String with_diac = "ůčšáäčďěéíĺžňóöôŕřšťúüýžźŮČŠÁÄČĎĚÉÍĹŇÓÖÔŔŘÚÜÝŽŐőÖöŰűÜü";
         String without_diac = "ucsaacdeeillnooorrstuuyzzUCSAACDEEILLNOOORRTUUYZOoOoUuUu";
         for (int l = 0; l < string.length(); l++) {
