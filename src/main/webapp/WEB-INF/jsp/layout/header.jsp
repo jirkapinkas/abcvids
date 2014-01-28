@@ -13,6 +13,7 @@
 
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/bootstrap-theme.min.css" />">
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
 
 <meta name="title" content="${param.title}">
 <meta name="description" content="${param.seoDescription}">
@@ -31,7 +32,7 @@ ${GoogleSiteVerification}
 
 ${GoogleAnalytics}
 
-	<div class="container" style="width: 1000px;">
+	<div class="container" style="width: 1380px;">
 
 		<!-- Static navbar -->
 		<div class="navbar navbar-default" role="navigation">
@@ -60,27 +61,56 @@ ${GoogleAnalytics}
 		
 		<div style="padding-bottom: 60px;"></div>
 
-		<div style="float: left;padding-right: 20px;width:180px;">
-			<h3>${TopLatestHeader}:</h3>
-			<c:forEach items="${latestVideos}" var="item">
-				<a href="<c:url value="/${ItemUrlPart}/${item.shortName}.html" />">
-					<table>
-						<tr>
-							<td style="padding-right: 5px">
-								<img src="<c:url value="/resources/images/${item.image}" />" alt="post" title="post" />
-							</td>
-							<td>
-								<strong style="color: black"><fmt:formatDate value="${item.createdDate}" pattern="${DateFormat}"/>:</strong><br />
-								${item.name}
-							</td>
-						</tr>
-					</table>
-				</a>
-				<br />
-			</c:forEach>
-				<a href="<c:url value="/latest.html" />">${AllLatestLink}</a>
-			<br /><br />
-			${AdsenseBannerLeft}
+		<div style="float: left;width:180px;margin-right: 20px;">
+			<div style="background-color: #f9f9f9;margin-bottom: 10px;padding:10px;">
+				<h3>${TopLatestHeader}:</h3>
+				<c:forEach items="${latestVideos}" var="item">
+					<a href="<c:url value="/${ItemUrlPart}/${item.shortName}.html" />">
+						<table>
+							<tr>
+								<td style="padding-right: 5px">
+									<img src="<c:url value="/resources/images/${item.image}" />" alt="post" title="post" />
+								</td>
+								<td>
+									<strong style="color: black"><fmt:formatDate value="${item.createdDate}" pattern="${DateFormat}"/>:</strong><br />
+									${item.name}
+								</td>
+							</tr>
+						</table>
+					</a>
+					<br />
+				</c:forEach>
+					<a href="<c:url value="/latest.html" />">${AllLatestLink}</a>
+			</div>
+			
+			<div style="background-color: #f9f9f9;margin-bottom: 10px;padding:10px;">
+				${AdsenseBannerLeft}
+			</div>
 		</div>
+		
+		<div style="float:right;width:350px">
+			<div style="background-color: #f9f9f9;padding: 10px;margin-bottom: 10px;"> 
+				<h4>${ShareBoxTitle}:</h4>
+				<!-- rss button -->
+				<a href="${RssUrl}" style="padding-bottom: 20px"><img src="<c:url value="/resources/images/rss.png" />" border="0" alt="rss" title="rss"></a><br />
+			
+				${ShareSubscribeBox}
+				
+			</div>
+			
+			<c:if test="${AdsenseBannerRight != ''}">
+				<div style="background-color: #f9f9f9;padding: 10px;margin-bottom: 10px;"> 
+					${AdsenseBannerRight}
+				</div>
+			</c:if>
 
-		<div style="float:right;width:790px;">
+			<div style="background-color: #f9f9f9;padding: 10px;margin-bottom: 10px;">
+				<h4>${SearchBoxTitle}:</h4>
+
+				${GoogleSearchBox}
+
+			</div>
+		</div>
+		
+
+		<div style="float:left;width:790px;">

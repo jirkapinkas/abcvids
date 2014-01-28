@@ -114,7 +114,7 @@
       <dependency>
          <groupId>cz.jiripinkas</groupId>
          <artifactId>jsitemapgenerator</artifactId>
-         <version>1.1</version>
+         <version>1.4</version>
       </dependency>
 
       <!-- JSTL -->

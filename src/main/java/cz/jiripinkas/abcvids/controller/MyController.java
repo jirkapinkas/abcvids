@@ -24,10 +24,10 @@ public class MyController {
 
 	@Autowired
 	private ItemService itemService;
-	
+
 	@Autowired
 	private SitemapService sitemapService;
-	
+
 	@Autowired
 	private SettingsService settingsService;
 
@@ -39,7 +39,7 @@ public class MyController {
 
 	@RequestMapping("/{service}/{shortName}")
 	public String getItems(Model model, @PathVariable String service, @PathVariable String shortName) {
-		if(service.equals(settingsService.findOne(InitDbSettingsService.SETTINGS_GROUP_URL_PART).getValue())) {
+		if (service.equals(settingsService.findOne(InitDbSettingsService.SETTINGS_GROUP_URL_PART).getValue())) {
 			model.addAttribute("group", groupService.findOne(shortName));
 			return "item-list";
 		} else {
@@ -48,20 +48,23 @@ public class MyController {
 		}
 	}
 
-	@RequestMapping("/sitemap.xml")
-	@ResponseBody public String getSitemap() {
-		String result = "";
-		String[] sitemap = sitemapService.generateSitemap();
-		for (String string : sitemap) {
-			result += string;
-		}
-		return result;
-	}
-	
 	@RequestMapping("/latest")
 	public String getLatest(Model model) {
 		List<Item> items = itemService.findAllLatest();
 		model.addAttribute("items", items);
 		return "latest";
 	}
+
+	@RequestMapping("/sitemap.xml")
+	@ResponseBody
+	public String getSitemap() {
+		return sitemapService.generateSitemap();
+	}
+
+	@RequestMapping("/rss.xml")
+	@ResponseBody
+	public String getRss() {
+		return sitemapService.generateRss();
+	}
+	
 }
