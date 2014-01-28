@@ -2,6 +2,8 @@ package cz.jiripinkas.abcvids.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -61,10 +63,11 @@ public class MyController {
 		return sitemapService.generateSitemap();
 	}
 
-	@RequestMapping("/rss.xml")
+	@RequestMapping(value="/rss.xml", produces="application/xml;charset=UTF-8")
 	@ResponseBody
-	public String getRss() {
+	public String getRss(HttpServletResponse response) {
 		return sitemapService.generateRss();
 	}
 	
+
 }

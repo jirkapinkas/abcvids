@@ -16,6 +16,7 @@ public final class MyUtil {
         string = string.replace("ň", "n");
         string = string.replace("Ň", "N");
         string = string.replace("ó", "o");
+        string = string.replace("ö", "o");
         string = string.replace("Ó", "O");
         string = string.replace("ß", "ss");
         String with_diac = "ůčšáäčďěéíĺžňóöôŕřšťúüýžźŮČŠÁÄČĎĚÉÍĹŇÓÖÔŔŘÚÜÝŽŐőÖöŰűÜü";

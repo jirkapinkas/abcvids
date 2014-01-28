@@ -12,6 +12,7 @@ public class MyUtilTest {
 		assertEquals("mussen", MyUtil.transformNameToShortName("müssen"));
 		assertEquals("nahen", MyUtil.transformNameToShortName("nähen"));
 		assertEquals("hinreissen", MyUtil.transformNameToShortName("hinreißen"));
+		assertEquals("stromen", MyUtil.transformNameToShortName("strömen"));
 	}
 
 }
