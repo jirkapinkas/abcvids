@@ -6,13 +6,11 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.Layout;
 import com.vaadin.ui.PasswordField;
-import com.vaadin.ui.VerticalLayout;
 
 import cz.jiripinkas.abcvids.annotation.UIComponent;
+import cz.jiripinkas.abcvids.components.CustomView;
 import cz.jiripinkas.abcvids.components.FormComponent;
-import cz.jiripinkas.abcvids.components.MyCustomMenuBarView;
 import cz.jiripinkas.abcvids.entity.User;
 import cz.jiripinkas.abcvids.service.UserService;
 import cz.jiripinkas.abcvids.ui.MyVaadinUI;
@@ -20,7 +18,7 @@ import cz.jiripinkas.abcvids.util.SpringSecurityHelper;
 
 @UIComponent
 @SuppressWarnings("serial")
-public class UserDetailView extends MyCustomMenuBarView {
+public class UserDetailView extends CustomView {
 
 	private PasswordField password;
 
@@ -40,9 +38,7 @@ public class UserDetailView extends MyCustomMenuBarView {
 		password.setValue("");
 	}
 
-	@Override
-	protected Layout buildLayout() {
-		VerticalLayout layout = new VerticalLayout();
+	public UserDetailView() {
 		formComponent = new FormComponent(500);
 
 		password = new PasswordField("New password:");
@@ -53,12 +49,7 @@ public class UserDetailView extends MyCustomMenuBarView {
 
 		formComponent.setLabelValue("Change password");
 
-		layout.addComponent(formComponent);
-		return layout;
-	}
-
-	@Override
-	protected void setListeners() {
+		mainLayout.addComponent(formComponent);
 
 		buttonSave.addClickListener(new ClickListener() {
 

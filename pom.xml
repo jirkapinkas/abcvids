@@ -97,6 +97,12 @@
    <dependencies>
 
       <dependency>
+         <groupId>org.vaadin.addons</groupId>
+         <artifactId>borderlayout</artifactId>
+         <version>0.5</version>
+      </dependency>
+
+      <dependency>
          <groupId>junit</groupId>
          <artifactId>junit</artifactId>
          <version>4.11</version>

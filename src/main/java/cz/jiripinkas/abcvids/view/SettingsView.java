@@ -12,14 +12,11 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.Notification.Type;
-import com.vaadin.ui.Layout;
 import com.vaadin.ui.Notification;
-import com.vaadin.ui.VerticalLayout;
 
 import cz.jiripinkas.abcvids.annotation.UIComponent;
+import cz.jiripinkas.abcvids.components.CustomView;
 import cz.jiripinkas.abcvids.components.FormComponent;
-import cz.jiripinkas.abcvids.components.MyCustomMenuBarView;
 import cz.jiripinkas.abcvids.components.SettingsForm;
 import cz.jiripinkas.abcvids.entity.Settings;
 import cz.jiripinkas.abcvids.service.SettingsService;
@@ -27,7 +24,7 @@ import cz.jiripinkas.abcvids.ui.MyVaadinUI;
 
 @UIComponent
 @SuppressWarnings("serial")
-public class SettingsView extends MyCustomMenuBarView {
+public class SettingsView extends CustomView {
 
 	@Autowired
 	private SettingsService settingsService;
@@ -54,9 +51,9 @@ public class SettingsView extends MyCustomMenuBarView {
 		}
 	}
 
-	@Override
-	protected Layout buildLayout() {
+	public SettingsView() {
 		formComponent = new FormComponent(500);
+		mainLayout.addComponent(formComponent);
 		formComponent.setLabelValue("Settings:");
 
 		settingsForm = new SettingsForm("New settings key:", "New settings value:");
@@ -64,12 +61,6 @@ public class SettingsView extends MyCustomMenuBarView {
 
 		buttonSave = formComponent.getSaveButton();
 		buttonCancel = formComponent.getCancelButton();
-
-		return new VerticalLayout(formComponent);
-	}
-
-	@Override
-	protected void setListeners() {
 
 		buttonSave.addClickListener(new ClickListener() {
 

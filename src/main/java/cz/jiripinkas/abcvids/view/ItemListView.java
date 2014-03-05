@@ -8,14 +8,12 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Layout;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
 
 import cz.jiripinkas.abcvids.annotation.UIComponent;
+import cz.jiripinkas.abcvids.components.CustomView;
 import cz.jiripinkas.abcvids.components.DeleteTableButton;
-import cz.jiripinkas.abcvids.components.MyCustomMenuBarView;
 import cz.jiripinkas.abcvids.components.NavigatorTableButton;
 import cz.jiripinkas.abcvids.dto.ItemOverviewDto;
 import cz.jiripinkas.abcvids.entity.Item;
@@ -26,7 +24,7 @@ import cz.jiripinkas.abcvids.ui.MyVaadinUI;
 
 @SuppressWarnings("serial")
 @UIComponent
-public class ItemListView extends MyCustomMenuBarView {
+public class ItemListView extends CustomView {
 
 	@Autowired
 	private ItemService itemService;
@@ -36,7 +34,7 @@ public class ItemListView extends MyCustomMenuBarView {
 	private Table table;
 
 	private int groupId;
-	
+
 	@Autowired
 	private SettingsService settingsService;
 
@@ -80,28 +78,16 @@ public class ItemListView extends MyCustomMenuBarView {
 
 	}
 
-	@Override
-	protected Layout buildLayout() {
-		VerticalLayout layout = new VerticalLayout();
-		layout.setMargin(true);
-
+	public ItemListView() {
 		addButton = new Button("Add item");
-		layout.addComponent(addButton);
 		Label groupListLabel = new Label("Items:");
-		layout.addComponent(groupListLabel);
 
 		table = new Table();
-
 		table.setSelectable(true);
 		table.setImmediate(true);
 
-		layout.addComponent(table);
+		mainLayout.addComponents(addButton, groupListLabel, table);
 
-		return layout;
-	}
-
-	@Override
-	protected void setListeners() {
 		addButton.addClickListener(new ClickListener() {
 
 			@Override

@@ -1,13 +1,17 @@
 package cz.jiripinkas.abcvids.ui;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.vaadin.addon.borderlayout.BorderLayout;
 
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
+import com.vaadin.ui.Layout;
 import com.vaadin.ui.UI;
+import com.vaadin.ui.VerticalLayout;
 
 import cz.jiripinkas.abcvids.annotation.UIComponent;
+import cz.jiripinkas.abcvids.components.Menu;
 import cz.jiripinkas.abcvids.view.GroupDetailView;
 import cz.jiripinkas.abcvids.view.GroupListView;
 import cz.jiripinkas.abcvids.view.ItemDetailView;
@@ -54,13 +58,27 @@ public class MyVaadinUI extends UI {
 
 	@Override
 	protected void init(VaadinRequest request) {
-		navigator = new Navigator(this, this);
+		navigator = new Navigator(this, constructContent());
 		navigator.addView(VIEW_GROUPS, groupsView);
 		navigator.addView(VIEW_GROUP_DETAIL, groupDetailView);
 		navigator.addView(VIEW_ITEMS, itemsView);
 		navigator.addView(VIEW_ITEM_DETAIL, itemDetailView);
 		navigator.addView(VIEW_USER_DETAIL, userDetailView);
 		navigator.addView(VIEW_SETTINGS, settingsView);
+	}
+
+	private Layout constructContent() {
+		VerticalLayout mainLayout = new VerticalLayout();
+		BorderLayout borderLayout = new BorderLayout();
+		borderLayout.setMinimumEastWidth("20px");
+		borderLayout.setMinimumWestWidth("20px");
+		borderLayout.setMinimumNorthHeight("35px");
+		borderLayout.addComponent(new VerticalLayout(new Menu()), BorderLayout.Constraint.NORTH);
+		borderLayout.addComponent(new VerticalLayout(), BorderLayout.Constraint.WEST);
+		borderLayout.addComponent(new VerticalLayout(), BorderLayout.Constraint.EAST);
+		borderLayout.addComponent(mainLayout, BorderLayout.Constraint.CENTER);
+		setContent(borderLayout);
+		return mainLayout;
 	}
 
 }

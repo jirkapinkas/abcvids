@@ -10,16 +10,14 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.Layout;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
-import com.vaadin.ui.VerticalLayout;
 
 import cz.jiripinkas.abcvids.annotation.UIComponent;
+import cz.jiripinkas.abcvids.components.CustomView;
 import cz.jiripinkas.abcvids.components.FormComponent;
-import cz.jiripinkas.abcvids.components.MyCustomMenuBarView;
 import cz.jiripinkas.abcvids.components.MyRichTextEditor;
 import cz.jiripinkas.abcvids.entity.Group;
 import cz.jiripinkas.abcvids.service.GroupService;
@@ -28,7 +26,7 @@ import cz.jiripinkas.abcvids.ui.MyVaadinUI;
 
 @SuppressWarnings("serial")
 @UIComponent
-public class GroupDetailView extends MyCustomMenuBarView {
+public class GroupDetailView extends CustomView {
 
 	private Button buttonSave;
 	private Button buttonCancel;
@@ -68,9 +66,7 @@ public class GroupDetailView extends MyCustomMenuBarView {
 		fieldGroup.bindMemberFields(this);
 	}
 
-	@Override
-	protected Layout buildLayout() {
-		VerticalLayout layout = new VerticalLayout();
+	public GroupDetailView() {
 		formComponent = new FormComponent(500);
 
 		name = new TextField("Name:");
@@ -86,13 +82,8 @@ public class GroupDetailView extends MyCustomMenuBarView {
 		buttonSave = formComponent.getSaveButton();
 		buttonCancel = formComponent.getCancelButton();
 
-		layout.addComponent(formComponent);
+		mainLayout.addComponent(formComponent);
 
-		return layout;
-	}
-
-	@Override
-	protected void setListeners() {
 		buttonSave.addClickListener(new ClickListener() {
 
 			@Override
