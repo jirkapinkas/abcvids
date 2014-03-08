@@ -9,14 +9,11 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Notification;
 
 import cz.jiripinkas.abcvids.annotation.UIComponent;
+import cz.jiripinkas.abcvids.components.CustomForm;
 import cz.jiripinkas.abcvids.components.CustomView;
-import cz.jiripinkas.abcvids.components.FormComponent;
 import cz.jiripinkas.abcvids.components.SettingsForm;
 import cz.jiripinkas.abcvids.entity.Settings;
 import cz.jiripinkas.abcvids.service.SettingsService;
@@ -29,10 +26,8 @@ public class SettingsView extends CustomView {
 	@Autowired
 	private SettingsService settingsService;
 
-	private FormComponent formComponent;
+	private CustomForm formComponent;
 	private SettingsForm settingsForm;
-	private Button buttonSave;
-	private Button buttonCancel;
 	private List<SettingsForm> settingsForms = new ArrayList<SettingsForm>();
 
 	@Override
@@ -52,20 +47,10 @@ public class SettingsView extends CustomView {
 	}
 
 	public SettingsView() {
-		formComponent = new FormComponent(500);
-		mainLayout.addComponent(formComponent);
-		formComponent.setLabelValue("Settings:");
-
-		settingsForm = new SettingsForm("New settings key:", "New settings value:");
-		formComponent.addComponents(settingsForm);
-
-		buttonSave = formComponent.getSaveButton();
-		buttonCancel = formComponent.getCancelButton();
-
-		buttonSave.addClickListener(new ClickListener() {
+		formComponent = new CustomForm() {
 
 			@Override
-			public void buttonClick(ClickEvent event) {
+			public void onSave() {
 				if (!settingsForm.getKey().isEmpty() && !settingsForm.getValue().isEmpty()) {
 					Settings settings = settingsForm.getSettings();
 					settings.setId(null);
@@ -95,15 +80,17 @@ public class SettingsView extends CustomView {
 				Notification.show("Settings saved");
 				getUI().getNavigator().navigateTo(MyVaadinUI.VIEW_SETTINGS);
 			}
-		});
-
-		buttonCancel.addClickListener(new ClickListener() {
 
 			@Override
-			public void buttonClick(ClickEvent event) {
+			public void onCancel() {
 				getUI().getNavigator().navigateTo(MyVaadinUI.VIEW_GROUPS);
 			}
-		});
+		};
+		mainLayout.addComponent(formComponent);
+		formComponent.setLabelValue("Settings:");
+
+		settingsForm = new SettingsForm("New settings key:", "New settings value:");
+		formComponent.addComponents(settingsForm);
 	}
 
 }

@@ -1,5 +1,11 @@
 package cz.jiripinkas.abcvids.components;
 
+import com.vaadin.data.fieldgroup.BeanFieldGroup;
+import com.vaadin.data.fieldgroup.FieldGroup;
+import com.vaadin.data.fieldgroup.FieldGroup.CommitException;
+import com.vaadin.data.util.BeanItem;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.FormLayout;
@@ -8,8 +14,8 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.VerticalLayout;
 
-@SuppressWarnings("serial")
-public class FormComponent extends CustomComponent {
+@SuppressWarnings({ "serial", "unchecked" })
+public abstract class CustomForm<T> extends CustomComponent {
 	private VerticalLayout mainLayout;
 
 	protected HorizontalLayout header;
@@ -20,7 +26,15 @@ public class FormComponent extends CustomComponent {
 	protected CancelButton cancelButton;
 	protected int pixelsWidth;
 
-	public FormComponent(int pixelsWidth) {
+	protected FieldGroup fieldGroup;
+
+	private static final int DEFAULT_PIXELS_WIDTH = 500;
+
+	public CustomForm() {
+		this(DEFAULT_PIXELS_WIDTH);
+	}
+
+	public CustomForm(int pixelsWidth) {
 		this.pixelsWidth = pixelsWidth;
 		header = new HorizontalLayout();
 		central = new FormLayout();
@@ -46,9 +60,25 @@ public class FormComponent extends CustomComponent {
 		footer.addComponent(saveButton);
 		footer.addComponent(cancelButton);
 		footer.setSpacing(true);
+
+		saveButton.addClickListener(new ClickListener() {
+
+			@Override
+			public void buttonClick(ClickEvent event) {
+				onSave();
+			}
+		});
+
+		cancelButton.addClickListener(new ClickListener() {
+
+			@Override
+			public void buttonClick(ClickEvent event) {
+				onCancel();
+			}
+		});
 	}
-	
-	public void addComponents(Component ... components) {
+
+	public void addComponents(Component... components) {
 		for (Component component : components) {
 			component.setWidth(pixelsWidth + "px");
 		}
@@ -63,15 +93,23 @@ public class FormComponent extends CustomComponent {
 		return mainLayout;
 	}
 
-	public SaveButton getSaveButton() {
-		return saveButton;
-	}
-
-	public CancelButton getCancelButton() {
-		return cancelButton;
-	}
-	
 	public void setLabelValue(String value) {
 		label.setValue(value);
+	}
+
+	public abstract void onSave();
+
+	public abstract void onCancel();
+
+	public void setComponent(T component, Class<T> type) {
+		fieldGroup = new BeanFieldGroup<T>(type);
+		fieldGroup.setItemDataSource(new BeanItem<T>(component));
+		fieldGroup.bindMemberFields(this);
+	}
+
+	public T getComponent() throws CommitException {
+		fieldGroup.commit();
+		BeanItem<T> beanItem = (BeanItem<T>) fieldGroup.getItemDataSource();
+		return beanItem.getBean();
 	}
 }
