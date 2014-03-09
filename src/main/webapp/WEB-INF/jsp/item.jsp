@@ -14,7 +14,7 @@
 	<jsp:param value="${item.seoDescription}" name="seoDescription"/>
 </jsp:include>
 
-<h1><img src="<c:url value="/resources/images/${item.image}" />" alt="video" title="video" /> ${item.name}</h1>
+<h1><img src="<c:url value="/resources/images/${item.image}" />" /> ${item.name}</h1>
 
 <p>${AdsenseBannerTop}</p>
 
