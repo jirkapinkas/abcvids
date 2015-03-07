@@ -3,51 +3,12 @@
 
 <%@ include file="taglib.jsp"%>
 
-<br><br>
-<footer>
-	<hr />
-	<p>${Copyright}</p>
-	<p>This project on <a href="https://github.com/jirkapinkas/abcvids" target="_blank">GitHub</a></p>
-	<p>${OtherProjects}
-	</p>
-</footer>		
+</div>
+</div>
 
-</div> <!-- end content -->
-
-		<!-- start latest news etc. -->
-		<div style="float: left;width:180px;margin-right: 20px;">
-			<div style="background-color: #f9f9f9;margin-bottom: 10px;padding:10px;">
-				<h3>${TopLatestHeader}:</h3>
-				<c:forEach items="${latestVideos}" var="item">
-					<a href="<c:url value="/${ItemUrlPart}/${item.shortName}.html" />">
-						<table>
-							<tr>
-								<td style="padding-right: 5px">
-									<img src="<c:url value="/resources/images/${item.image}" />" alt="post" title="post" />
-								</td>
-								<td>
-									<strong style="color: black"><fmt:formatDate value="${item.createdDate}" pattern="${DateFormat}"/>:</strong><br />
-									${item.name}
-								</td>
-							</tr>
-						</table>
-					</a>
-					<br />
-				</c:forEach>
-					<a href="<c:url value="/latest.html" />">${AllLatestLink}</a>
-			</div>
-			
-			<c:if test="${AdsenseBannerLeft != ''}">
-				<div style="background-color: #f9f9f9;margin-bottom: 10px;padding:10px;">
-					${AdsenseBannerLeft}
-				</div>
-			</c:if>
-		</div> <!-- end latest news etc. -->
-
-		</div> <!-- end group left two columns -->
+<div class="col-md-2 col-md-pull-10 col-sm-4 col-sm-pull-8">
 
 		<!-- start share / subscribe etc. -->
-		<div style="float:right;width:350px">
 			<div style="background-color: #f9f9f9;padding: 10px;margin-bottom: 10px;"> 
 				<h4>${ShareBoxTitle}:</h4>
 				<!-- rss button -->
@@ -57,20 +18,28 @@
 				
 			</div>
 			
-			<c:if test="${AdsenseBannerRight != ''}">
-				<div style="background-color: #f9f9f9;padding: 10px;margin-bottom: 10px;"> 
-					${AdsenseBannerRight}
+<%-- 			<div style="background-color: #f9f9f9;padding: 10px;margin-bottom: 10px;"> --%>
+<%-- 				<h4>${SearchBoxTitle}:</h4> --%>
+<%-- 				${GoogleSearchBox} --%>
+<%-- 			</div> --%>
+		<!-- end share / subscribe etc. -->
+
+		<!-- start latest news etc. -->
+		<div style="">
+
+			<c:if test="${AdsenseBannerLeft != ''}">
+				<div style="background-color: #f9f9f9;margin-bottom: 10px;padding:10px;">
+					${AdsenseBannerLeft}
 				</div>
 			</c:if>
+		</div> <!-- end latest news etc. -->
 
-			<div style="background-color: #f9f9f9;padding: 10px;margin-bottom: 10px;">
-				<h4>${SearchBoxTitle}:</h4>
+</div> <!-- end column -->
 
-				${GoogleSearchBox}
+</div> <!-- end row -->
 
-			</div>
-		</div>
-		<!-- end share / subscribe etc. -->
+
+	<!-- footer -->
 
 	<style type="text/css">
 		/* adBlockMessage */
@@ -78,7 +47,7 @@
 		.adBlockMessage a {color: #222; text-decoration: none; padding: 0.6em 1em; margin-left: 1em; border: 2px solid #dad91a; background-color: #fff; }
 		.adBlockMessage a:hover {border-color: #222; }
 	</style>
-
+	
 	<script type="text/javascript" src="/resources/js/ads.js"></script>
 
 	<div id="footer"></div>
@@ -102,6 +71,18 @@
 		</style>
 	</noscript>
 
+	<div class="row">
+		<div class="col-md-12">
+			<br><br>
+			<footer>
+				<hr />
+				<p>${Copyright}</p>
+				<p>This project on <a href="https://github.com/jirkapinkas/abcvids" target="_blank">GitHub</a></p>
+				<p>${OtherProjects}
+				</p>
+			</footer>		
+		</div>
+	</div>
 
 </div>
 <!-- /container -->

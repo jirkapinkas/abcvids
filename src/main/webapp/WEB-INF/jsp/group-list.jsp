@@ -10,6 +10,7 @@
 	<jsp:param value="${HomepageSeoDescription}" name="seoDescription"/>
 </jsp:include>
 
+
 <h1>${HomepageWelcomeHeader}:</h1>
 
 <p>${HomepageWelcomeParagraph}</p>
@@ -27,5 +28,6 @@
 		</tr>
 	</c:forEach>
 </table>
+
 
 <jsp:include page="layout/footer.jsp" />

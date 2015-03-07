@@ -2,10 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="taglib.jsp"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
 <title>${param.title}</title>
 
 <link rel="stylesheet"
@@ -32,7 +35,7 @@ ${GoogleSiteVerification}
 
 ${GoogleAnalytics}
 
-	<div class="container" style="width: 1380px;">
+	<div class="container">
 
 		<!-- Static navbar -->
 		<div class="navbar navbar-default" role="navigation">
@@ -62,5 +65,7 @@ ${GoogleAnalytics}
 		<div style="padding-bottom: 60px;"></div>		
 		
 
-		<div style="float:left"> <!-- start group left two columns -->
-			<div style="float:right;width:790px;"> <!-- start content -->
+<div class="row"> <!--  start row -->
+
+<div class="col-md-10 col-md-push-2 col-sm-8 col-sm-push-4">
+<div style="margin-left:10px">
