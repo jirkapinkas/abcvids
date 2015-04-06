@@ -16,8 +16,6 @@
 
    <import resource="task.xml" />
 
-   <bean class="org.dozer.DozerBeanMapper" />
-
    <beans profile="dev">
       <import resource="db-dev.xml" />
    </beans>

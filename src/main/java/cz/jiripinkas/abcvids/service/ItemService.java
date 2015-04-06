@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -30,14 +29,14 @@ public class ItemService {
 	@Autowired
 	private GroupRepository groupRepository;
 
-	@Autowired
-	private DozerBeanMapper mapper;
-
 	public List<ItemOverviewDto> findAllOverview(int groupId) {
 		List<Item> list = itemRepository.findByGroupId(groupId);
 		List<ItemOverviewDto> result = new ArrayList<ItemOverviewDto>();
 		for (Item item : list) {
-			result.add(mapper.map(item, ItemOverviewDto.class));
+			ItemOverviewDto itemOverviewDto = new ItemOverviewDto();
+			itemOverviewDto.setId(item.getId());
+			itemOverviewDto.setName(item.getName());
+			result.add(itemOverviewDto);
 		}
 		return result;
 	}

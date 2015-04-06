@@ -3,7 +3,6 @@ package cz.jiripinkas.abcvids.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -21,14 +20,14 @@ public class GroupService {
 	@Autowired
 	private GroupRepository groupRepository;
 
-	@Autowired
-	private DozerBeanMapper mapper;
-
 	public List<GroupOverviewDto> findAllOverview() {
 		List<Group> groups = groupRepository.findAll();
 		ArrayList<GroupOverviewDto> dtos = new ArrayList<GroupOverviewDto>();
 		for (Group group : groups) {
-			dtos.add(mapper.map(group, GroupOverviewDto.class));
+			GroupOverviewDto groupOverviewDto = new GroupOverviewDto();
+			groupOverviewDto.setId(group.getId());
+			groupOverviewDto.setName(group.getName());
+			dtos.add(groupOverviewDto);
 		}
 		return dtos;
 	}
