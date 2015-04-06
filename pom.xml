@@ -308,9 +308,9 @@
 						<configuration>
 							<artifactItems>
 								<artifactItem>
-									<groupId>org.eclipse.jetty</groupId>
+									<groupId>org.mortbay.jetty</groupId>
 									<artifactId>jetty-runner</artifactId>
-									<version>9.2.10.v20150310</version>
+									<version>8.1.16.v20140903</version>
 									<destFileName>webapp-runner.jar</destFileName>
 								</artifactItem>
 							</artifactItems>
@@ -391,7 +391,7 @@
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>8.1.14.v20131031</version>
+				<version>8.1.16.v20140903</version>
 				<configuration>
 					<scanIntervalSeconds>1</scanIntervalSeconds>
 				</configuration>
