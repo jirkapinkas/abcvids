@@ -11,21 +11,21 @@
 
    <jee:jndi-lookup id="myDataSource" jndi-name="jdbc/PostgreSQLDS" expected-type="javax.sql.DataSource" />
 
-   <bean id="myEmf"
+   <bean id="entityManagerFactory"
       class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
       <property name="dataSource" ref="myDataSource" />
       <property name="packagesToScan" value="cz.jiripinkas.abcvids.entity" />
       <property name="jpaVendorAdapter">
          <bean
-            class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-            <property name="databasePlatform" value="org.hibernate.dialect.HSQLDialect" />
-         </bean>
+            class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
       </property>
       <property name="jpaProperties">
          <props>
-            <prop key="hibernate.hbm2ddl.auto">create</prop>
-            <prop key="hibernate.show_sql">true</prop>
-            <prop key="hibernate.format_sql">false</prop>
+            <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect
+            </prop>
+            <prop key="hibernate.show_sql">false</prop>
+            <!-- change this to 'verify' before running as a production app -->
+            <prop key="hibernate.hbm2ddl.auto">update</prop>
          </props>
       </property>
    </bean>
