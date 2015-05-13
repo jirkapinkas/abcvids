@@ -11,7 +11,7 @@
 
    <jee:jndi-lookup id="myDataSource" jndi-name="jdbc/PostgreSQLDS" expected-type="javax.sql.DataSource" />
 
-   <bean id="entityManagerFactory"
+   <bean id="myEmf"
       class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
       <property name="dataSource" ref="myDataSource" />
       <property name="packagesToScan" value="cz.jiripinkas.abcvids.entity" />
