@@ -19,7 +19,7 @@ import cz.jiripinkas.abcvids.service.SettingsService;
 import cz.jiripinkas.abcvids.service.SitemapService;
 
 @Controller
-public class MyController {
+public class PublicController {
 
 	@Autowired
 	private GroupService groupService;

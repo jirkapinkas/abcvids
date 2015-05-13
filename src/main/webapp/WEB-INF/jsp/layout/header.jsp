@@ -12,22 +12,22 @@
 
 <title>${param.title}</title>
 
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/bootstrap.min.css" />">
-
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/bootstrap-theme.min.css" />">
-<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
-
 <meta name="title" content="${param.title}">
 <meta name="description" content="${param.seoDescription}">
 <meta name="keywords" content="${param.seoKeywords}">
 <meta name="robots" content="index, follow" />
 
+<link rel="stylesheet" href="<c:url value="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />">
+<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap-dialog.min.css" />">
+<link rel="stylesheet" href="<c:url value="/resources/css/image-picker.css" />">
+<link rel="stylesheet" href="<c:url value="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" />">
 
-<script src="<c:url value="/resources/js/jquery-2.0.3.min.js" />"></script>
-
-<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+<script src="https://apis.google.com/js/plusone.js"></script>
+<script src="<c:url value="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" />"></script>
+<script src="<c:url value="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" />"></script>
+<script src="<c:url value="/resources/js/bootstrap-dialog.min.js" />"></script>
+<script src="<c:url value="/resources/js/image-picker.min.js" />"></script>
+<script src="//cdn.ckeditor.com/4.4.7/standard/ckeditor.js"></script>
 
 ${GoogleSiteVerification}
 

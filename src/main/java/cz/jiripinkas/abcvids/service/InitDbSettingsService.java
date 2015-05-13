@@ -61,7 +61,7 @@ public class InitDbSettingsService {
 		"<!-- AddThis Button END -->\n");
 		addSettings("ImageSiteLogo", "logo-default.png");
 		addSettings("ImageItemLogo", "item-default.png");
-		addSettings("ImageGroupLogo", "group-default.jpg");
+		addSettings("ImageGroupLogo", "group-default.png");
 		addSettings("HomepageWelcomeHeader", "Categories");
 		addSettings("DateFormat", "M/d/yyyy");
 		addSettings("HomeButton", "Home");

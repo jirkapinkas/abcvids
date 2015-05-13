@@ -9,7 +9,7 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-   <jee:jndi-lookup id="dataSource" jndi-name="jdbc/PostgreSQLDS" expected-type="javax.sql.DataSource" />
+   <jee:jndi-lookup id="myDataSource" jndi-name="jdbc/PostgreSQLDS" expected-type="javax.sql.DataSource" />
 
    <bean id="myEmf"
       class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">

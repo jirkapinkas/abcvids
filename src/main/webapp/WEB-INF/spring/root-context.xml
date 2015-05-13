@@ -24,10 +24,6 @@
       <import resource="db-prod.xml" />
    </beans>
 
-   <beans profile="test">
-      <import resource="db-test.xml" />
-   </beans>
-
    <beans profile="openshift">
       <import resource="db-openshift.xml" />
    </beans>

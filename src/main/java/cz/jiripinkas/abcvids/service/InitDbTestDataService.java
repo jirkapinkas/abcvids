@@ -38,7 +38,7 @@ public class InitDbTestDataService {
 		groupOracle.setDescription("All about Oracle database");
 		groupOracle.setKeywords("oracle, database");
 		groupOracle.setSeoDescription("Oracle DB");
-		groupOracle.setImage("group-default.jpg");
+		groupOracle.setImage("group-default.png");
 		groupOracle = groupRepository.save(groupOracle);
 
 		Item itemInstallation = new Item();

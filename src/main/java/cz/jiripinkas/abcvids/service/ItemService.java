@@ -1,6 +1,5 @@
 package cz.jiripinkas.abcvids.service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +12,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import cz.jiripinkas.abcvids.dto.ItemOverviewDto;
+import cz.jiripinkas.abcvids.entity.Group;
 import cz.jiripinkas.abcvids.entity.Item;
 import cz.jiripinkas.abcvids.repository.GroupRepository;
 import cz.jiripinkas.abcvids.repository.ItemRepository;
@@ -29,28 +28,19 @@ public class ItemService {
 	@Autowired
 	private GroupRepository groupRepository;
 
-	public List<ItemOverviewDto> findAllOverview(int groupId) {
-		List<Item> list = itemRepository.findByGroupId(groupId);
-		List<ItemOverviewDto> result = new ArrayList<ItemOverviewDto>();
-		for (Item item : list) {
-			ItemOverviewDto itemOverviewDto = new ItemOverviewDto();
-			itemOverviewDto.setId(item.getId());
-			itemOverviewDto.setName(item.getName());
-			result.add(itemOverviewDto);
-		}
-		return result;
-	}
-
 	public List<Item> findAll(int groupId) {
 		return itemRepository.findByGroupId(groupId);
 	}
 
 	@CacheEvict(value = "topItems", allEntries = true)
-	public void save(Item item, int groupId) {
+	public void save(Item item, int groupId, String imageName) {
 		item.setCreatedDate(new Date());
 		item.setGroup(groupRepository.findOne(groupId));
 		if (item.getShortName() == null || "".equals(item.getShortName())) {
 			item.setShortName(MyUtil.transformNameToShortName(item.getName()));
+		}
+		if (imageName != null) {
+			item.setImage(imageName + ".png");
 		}
 		itemRepository.save(item);
 	}
@@ -75,6 +65,20 @@ public class ItemService {
 
 	public List<Item> findAllLatest() {
 		return itemRepository.findAll(new Sort(Direction.DESC, "createdDate"));
+	}
+
+	public void edit(Item item, String imageName) {
+		Item managedItem = itemRepository.findOne(item.getId());
+		managedItem.setDescription(item.getDescription());
+		managedItem.setKeywords(item.getKeywords());
+		managedItem.setName(item.getName());
+		managedItem.setSeoDescription(item.getSeoDescription());
+		managedItem.setShortName(item.getShortName());
+		managedItem.setUrl(item.getUrl());
+		if (imageName != null) {
+			managedItem.setImage(imageName + ".png");
+		}
+		itemRepository.save(managedItem);
 	}
 
 }
