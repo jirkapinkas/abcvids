@@ -28,4 +28,8 @@
       <import resource="db-openshift.xml" />
    </beans>
 
+   <beans profile="custom">
+      <import resource="db-custom.xml" />
+   </beans>
+
 </beans>
